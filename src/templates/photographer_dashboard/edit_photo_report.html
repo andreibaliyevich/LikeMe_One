@@ -1,0 +1,157 @@
+{% extends "photographer_dashboard/base.html" %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+{% block title %}{% trans 'Edit Photoreport' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+
+{% bootstrap_javascript jquery='full' %}
+{{ photo_report_form.media }}
+
+<style type="text/css">
+    .img-fluid:hover {
+        cursor: pointer;
+    }
+    .figure-not-available {
+        background-color: rgb(255, 0, 0);
+    }
+    .img-not-available {
+        opacity: 0.5;
+    }
+    .img-is-cover {
+        mask: url('{% static 'images/mask-star.png' %}');
+        -webkit-mask: url('{% static 'images/mask-star.png' %}');
+    }
+</style>
+{% endblock stylesheet %}
+
+
+{% block photo_reports_active %} active{% endblock photo_reports_active %}
+
+
+{% block photographer_dashboard_content %}
+
+<br>
+
+{% if message %}
+    <p>{% trans 'Error!' %}</p>
+{% endif %}
+
+<form action="{% url 'photographer_dashboard:edit-photo-report' pr_id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form photo_report_form %}
+
+    {# GALLERY TO DISPLAY THE UPLOADED PHOTOS #}
+    <div id="gallery" class="row">
+        {% for photo in photos %}
+        <div id="{{ photo.id }}" class="card col-md-4 g-mb-30 mt-1">
+            <figure id="figure-{{ photo.id }}" class="{% if not photo.is_available %}figure-not-available{% endif %}">
+                <img id="img-{{ photo.id }}" class="img-fluid{% if not photo.is_available %} img-not-available{% endif %}{% if photo.is_cover %} img-is-cover{% endif %}" src="{{ photo.thumbnail.url }}" data-toggle="modal" data-target="#modal-photo" data-action="photo-open" data-id="{{ photo.id }}" loading="lazy">
+            </figure>
+        </div>
+        {% endfor %}
+    </div>
+
+    {# MODAL UPLOADING PROGRESS #}
+    <div class="modal fade bd-example-modal-xl" id="modal-photo" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{% trans 'Update Photo' %}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-center">
+                    <div id="carousel-photos" class="carousel slide" data-ride="carousel" data-interval="false">
+                        <div id="carousel-photo-items" class="carousel-inner row w-100 mx-auto" role="listbox">
+                            {% for photo in photos %}
+                            <div class="carousel-item" id="carousel-item-{{ photo.id }}">
+                                <script type="text/javascript">
+                                    document.write("<img class='img-fluid' src='{{ photo.image.url }}' style='max-height:" + (window.innerHeight - 150) + "px;'>");
+                                </script>
+
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input id="id_available" type="checkbox" class="form-check-input" data-action="photo-available" data-id="{{ photo.id }}" {% if photo.is_available %}checked{% endif %}>
+                                        <label class="form-check-label" for="id_available">{% trans 'Available' %}</label>
+
+                                        <input id="cover-{{ photo.id }}" type="radio" name="cover" data-action="photo-cover" data-id="{{ photo.id }}" {% if photo.is_cover %}checked{% endif %}>
+                                        <label for="cover-{{ photo.id }}">{% trans 'Cover' %}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <a class="carousel-control-prev" href="#carousel-photos" role="button" data-slide="prev">
+                            <i style="color:#000; text-decoration: none;" class="fa fa-chevron-circle-left fa-2x"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+
+                        <a class="carousel-control-next text-faded" href="#carousel-photos" role="button" data-slide="next">
+                            <i style="color:#000; text-decoration: none;" class="fa fa-chevron-circle-right fa-2x"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {# DRAG AND DROP #}
+    <div class="jumbotron text-muted text-center mt-3" style="padding-top: 3rem; padding-bottom: 3rem;">
+        <i class="fas fa-cloud-upload-alt" style="font-size:3rem;"></i>
+        <h3>{% trans 'Transfer photos here for upload' %}</h3>
+        <p>{% trans 'or' %}</p>
+        {# BUTTON TO TRIGGER THE ACTION #}
+        <button type="button" class="btn btn-secondary" id="js-upload-photos">
+            {% trans 'Select Photos' %}
+        </button>
+        {# FILES INPUT TO BE USED BY THE PLUG-IN #}
+        <input id="photo-upload" type="file" accept="image/*" name="image" multiple style="display: none;" data-url="{% url 'photographer_dashboard:photo-upload' pr_id %}" data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+    </div>
+
+    <button class="btn btn-info" type="button" data-action="shuffle-photos" data-id="{{ pr_id }}">{% trans 'Shuffle Photos' %}</button>
+    <button class="btn btn-warning m-2" type="submit">{% trans 'Save Photoreport' %}</button>
+    <a href="{% url 'photographer_dashboard:delete-photo-report' pr_id %}">
+        <button type="button" class="btn btn-dark">{% trans 'Delete Photoreport' %}</button>
+    </a>
+</form>
+
+<div class="modal fade" id="modal-progress" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{% trans 'Loading...' %}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock photographer_dashboard_content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/jquery-ui-widget.js' %}"></script>
+<script src="{% static 'js/jquery-iframe-transport.js' %}"></script>
+<script src="{% static 'js/jquery-fileupload.js' %}"></script>
+<script src="{% static 'js/photo-upload.js' %}"></script>
+<script src="{% static 'js/photo-edit.js' %}"></script>
+{% endblock javascript %}

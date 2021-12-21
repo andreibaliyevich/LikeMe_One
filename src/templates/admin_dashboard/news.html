@@ -1,0 +1,93 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block title %}{% trans 'News' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+{% endblock stylesheet %}
+
+
+{% block news_active %} active{% endblock news_active %}
+
+
+{% block admin_dashboard_content %}
+
+<br>
+
+<a href="{% url 'admin_dashboard:add-news' %}">
+    <button type="button" class="btn btn-warning">{% trans 'Add News' %}</button>
+</a>
+
+<div class="infinite-container">
+    {% for one_news in news_page %}
+    <!-- Article -->
+    <article class="d-md-table w-100 g-bg-white g-mb-1 infinite-item">
+        <!-- Date -->
+        <div class="d-md-table-cell align-middle g-width-225--md text-center g-color-gray-dark-v5 g-py-10 g-px-20">
+            <time datetime="2015-06-27">
+                <span class="d-block g-color-black g-font-weight-700 g-font-size-40 g-line-height-1">{{ one_news.date_published|date:"d" }}</span>
+                {{ one_news.date_published|date:"F" }}
+            </time>
+        </div>
+        <!-- End Date -->
+
+        <!-- Article Image -->
+        <a class="d-md-table-cell align-middle g-width-130" href="{{ one_news.get_absolute_url }}">
+            <img class="d-block info-v5-2__image g-ml-minus-1" src="{{ one_news.main_image|thumbnail_url:'default' }}" loading="lazy">
+        </a>
+        <!-- End Article Image -->
+
+        <!-- Article Content -->
+        <div class="d-md-table-cell align-middle g-py-15 g-px-20">
+            <h3 class="h6 g-font-weight-700 text-uppercase">
+                <a class="g-color-gray-dark-v2" href="{{ one_news.get_absolute_url }}">
+                    {% if LANGUAGE_CODE == 'en' %}
+                        {{ one_news.title }}
+                    {% elif LANGUAGE_CODE == 'ru' %}
+                        {{ one_news.title_ru }}
+                    {% elif LANGUAGE_CODE == 'uk' %}
+                        {{ one_news.title_uk }}
+                    {% endif %}
+                </a>
+            </h3>
+            <em class="g-color-gray-dark-v5 g-font-style-normal">{% if one_news.author.get_full_name %}{{ one_news.author.get_full_name }}{% else %}{{ one_news.author.get_username }}{% endif %}</em>
+        </div>
+        <!-- End Article Content -->
+
+        <!-- Actions -->
+        <div class="d-md-table-cell align-middle text-md-right g-pa-20">
+            <div class="g-mt-minus-10 g-mx-minus-5">
+                <a class="btn btn-lg u-btn-primary g-font-size-12 g-mx-5 g-mt-10" href="{% url 'admin_dashboard:edit-news' one_news.id %}"><i class='fas fa-edit'></i></a>
+                <a class="btn btn-lg u-btn-outline-black g-font-size-12 g-mx-5 g-mt-10" href="{% url 'admin_dashboard:delete-news' one_news.id %}"><i class='fas fa-trash'></i></a>
+            </div>
+        </div>
+        <!-- End Actions -->
+    </article>
+    <!-- End Article -->
+    {% endfor %}
+</div>
+
+{% if news_page.has_next %}
+<a class="infinite-more-link" href="?page={{ news_page.next_page_number }}">More</a>
+{% endif %}
+
+{% endblock admin_dashboard_content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/jquery-waypoints.min.js' %}"></script>
+<script src="{% static 'js/infinite.min.js' %}"></script>
+<script type="text/javascript">    
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0]
+    });
+</script>
+{% endblock javascript %}

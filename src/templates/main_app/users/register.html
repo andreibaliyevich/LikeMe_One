@@ -1,0 +1,98 @@
+{% load i18n %}
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>{% trans 'Sign up' %}</title>
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/unify-dzsparallaxer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login-register-style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800">
+    <style type="text/css">
+        .display-none {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="js-bg-video g-pos-abs w-100 h-100 u-bg-overlay g-bg-size-cover g-bg-primary-gradient-opacity-v1--after">
+            <div class="container g-py-50 g-pos-rel g-z-index-1">
+                <div class="row justify-content-center u-box-shadow-v24">
+                    <div class="col-sm-10 col-md-9 col-lg-6">
+                        <div class="g-bg-white rounded g-py-40 g-px-30">
+                            <header class="text-center mb-4">
+                                <h2 class="h2 g-color-black g-font-weight-600">{% trans 'Account creation' %}</h2>
+                            </header>
+
+                            <!-- Form -->
+                            <form method="post" action="{% url 'main_app:register' %}" class="g-py-15">
+                                {% csrf_token %}
+                                <div class="mb-4">
+                                    <input type="text" name="username" maxlength="150" autofocus class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" placeholder="{% trans 'Username' %}" title="{% trans 'Obligatory field. No more than 150 characters. Only letters, numbers and symbols @ /. / + / - / _.' %}" required id="id_username">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 mb-4">
+                                        <input type="password" name="password1" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" placeholder="{% trans 'Password' %}" title="{% trans 'Your password must not coincide with your name or other personal information or be too similar to it. Your password must contain at least 8 characters. Your password cannot be one of the widespread passwords. Your password cannot consist of only numbers.' %}" required id="id_password1">
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 mb-4">
+                                        <input type="password" name="password2" class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15" placeholder="{% trans 'Password confirmation' %}" title="{% trans 'To confirm, please enter the password again.' %}" required id="id_password2">
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-between mb-5">
+                                    <div class="col align-self-center">
+                                        <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-12 g-pl-25">
+                                            <input id="checkbox-policy" class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                                            <div class="u-check-icon-checkbox-v6 g-absolute-centered--y g-left-0">
+                                                <i class="fa g-rounded-2" data-check-icon="&#xf00c"></i>
+                                            </div>
+                                            {% trans 'I accept' %}&nbsp;<a href="{% url 'main_app:policy' %}">{% trans 'the terms' %}</a>
+                                        </label>
+                                    </div>
+                                    <div id="btn-submit" class="col align-self-center text-right display-none">
+                                        <button class="btn btn-md u-btn-primary rounded g-py-13 g-px-25" name="submit">{% trans 'Create Account' %}</button>
+                                    </div>
+                                    <input type="hidden" name="next" value="{% url 'main_app:index' %}">
+                                </div>
+                            </form>
+                            <!-- End Form -->
+
+                            <footer class="text-center">
+                                <p class="g-color-gray-dark-v5 mb-0">{% trans 'Already have an account?' %} <a class="g-font-weight-600" href="{% url 'main_app:login' %}">{% trans 'Log In' %}</a></p>
+
+                                <p class="g-color-gray-dark-v5 g-font-size-13 mb-0">{% trans 'Back to' %}  <a class="g-font-weight-600" href="{% url 'main_app:index' %}">LIKEME.ONE</a></p>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Signup -->
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function display_block_none() {
+            $("#btn-submit").toggleClass("display-none");
+        };
+        $("#checkbox-policy").click(display_block_none);
+    </script>
+
+</body>
+</html>

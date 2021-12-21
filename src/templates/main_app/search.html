@@ -1,0 +1,189 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block title %}{% trans 'Search' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800">
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/unify-line-icons.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-dzsparallaxer.css' %}">
+{% endblock stylesheet %}
+
+
+{% block content %}
+
+<section class="dzsparallaxer auto-init height-is-based-on-content use-loading" data-options='{direction: "reverse", settings_mode_oneelement_max_offset: "150"}' style="height: 20em;">
+    <div class="divimage dzsparallaxer--target w-100 g-bg-cover g-bg-white-gradient-opacity-v3--after" style="height: 140%; background-image: url({% static 'images/main-pcs-bg.jpg' %});"></div>
+
+    <div class="container text-center g-py-50--md g-py-30">
+        <h2 class="h1 text-uppercase g-font-weight-300 g-mb-30">{% trans 'Search' %}</h2>
+
+        <form class="g-width-60x--md mx-auto">
+        <div class="form-group g-mb-20">
+            <div class="input-group u-shadow-v21 rounded g-mb-15">
+                <input class="form-control form-control-md g-brd-white g-font-size-16 border-right-0 pr-0 g-py-15" name="q" type="text" placeholder="{% trans 'Enter the name of the report, institution or news.' %}" value="{{ request.GET.q }}" aria-label="search">
+                <div class="input-group-addon d-flex align-items-center g-bg-white g-brd-white g-color-gray-light-v1 g-pa-2">
+                    <button class="btn u-btn-primary g-font-size-16 g-py-15 g-px-20" type="submit">
+                        <i class="icon-magnifier g-pos-rel g-top-1"></i>
+                    </button>
+                </div>
+            </div>
+            <small class="form-text g-opacity-0_8 g-font-size-default">{% trans 'Search for reports, places, news in your area.' %}</small>
+        </div>
+        </form>
+    </div>
+</section>
+
+<div class="container-fluid" style="max-width: 1190px;">
+    <div class="row my-3 mx-1">
+
+    {% for photo_report in photo_reports_found %}
+        <div class="col-lg-6">
+        <!-- Article -->
+        <div class="row g-mx-5--sm g-mb-30">
+            <!-- Article Image -->
+            <div class="col-sm-5 g-px-0--sm">
+                <div class="g-height-200 g-bg-size-cover" style="background-image: url({{ photo_report.main_image.url }});"></div>
+            </div>
+            <!-- End Article Image -->
+
+            <!-- Article Content -->
+            <div class="col-sm-7 g-px-0--sm">
+                <div class="u-info-v1-1 g-height-200 g-bg-gray-light-v5 g-bg-gray-light-gradient-v1--after g-pa-20-30-0">
+                    <h3 class="h6 g-font-weight-600 text-uppercase">
+                        <a class="u-link-v5 g-color-black g-color-primary--hover" href="{{ photo_report.get_absolute_url }}">{{ photo_report.title }}</a>
+                    </h3>
+                    <div class="small g-color-primary">
+                        <time>{{ photo_report.date|date:"d b Y" }}</time>
+                    </div>
+
+                    <div>{{ photo_report.place }}</div>
+                </div>
+            </div>
+            <!-- End Article Content -->
+        </div>
+        <!-- End Article -->
+        </div>
+    {% endfor %}
+
+    {% for video_report in video_reports_found %}
+        <div class="col-lg-6">
+        <!-- Article -->
+        <div class="row g-mx-5--sm g-mb-30">
+            <!-- Article Image -->
+            <div class="col-sm-5 g-px-0--sm">
+                <div class="g-height-200 g-bg-size-cover" style="background-image: url({{ video_report.image|thumbnail_url:'default' }});"></div>
+            </div>
+            <!-- End Article Image -->
+
+            <!-- Article Content -->
+            <div class="col-sm-7 g-px-0--sm">
+                <div class="u-info-v1-1 g-height-200 g-bg-gray-light-v5 g-bg-gray-light-gradient-v1--after g-pa-20-30-0">
+                    <h3 class="h6 g-font-weight-600 text-uppercase">
+                        <a class="u-link-v5 g-color-black g-color-primary--hover" href="{{ video_report.get_absolute_url }}">{{ video_report.title }}</a>
+                    </h3>
+                    <div class="small g-color-primary">
+                        <time>{{ video_report.date|date:"d b Y" }}</time>
+                    </div>
+
+                    <div>{{ video_report.place }}</div>
+                </div>
+            </div>
+            <!-- End Article Content -->
+        </div>
+        <!-- End Article -->
+        </div>
+    {% endfor %}
+
+    {% for place in places_found %}
+        <div class="col-lg-6">
+        <!-- Article -->
+        <div class="row g-mx-5--sm g-mb-30">
+            <!-- Article Image -->
+            <div class="col-sm-5 g-px-0--sm">
+                <div class="g-height-200 g-bg-size-cover" style="background-image: url({{ place.image_place|thumbnail_url:'default' }});"></div>
+            </div>
+            <!-- End Article Image -->
+
+            <!-- Article Content -->
+            <div class="col-sm-7 g-px-0--sm">
+                <div class="u-info-v1-1 g-height-200 g-bg-gray-light-v5 g-bg-gray-light-gradient-v1--after g-pa-20-30-0">
+                    <h3 class="h6 g-font-weight-600 text-uppercase">
+                        <a class="u-link-v5 g-color-black g-color-primary--hover" href="{{ place.get_absolute_url }}">{{ place.name }}</a>
+                    </h3>
+
+                    <div>{{ place.address }}</div>
+                    <div>{{ place.phone_number }}</div>
+                    <div>{{ place.working_hours }}</div>
+                    <div>{{ place.url_address }}</div>
+                </div>
+            </div>
+            <!-- End Article Content -->
+        </div>
+        <!-- End Article -->
+        </div>
+    {% endfor %}
+
+    {% for one_news in news_found %}
+        <div class="col-lg-6">
+        <!-- Article -->
+        <div class="row g-mx-5--sm g-mb-30">
+            <!-- Article Image -->
+            <div class="col-sm-5 g-px-0--sm">
+                <div class="g-height-200 g-bg-size-cover" style="background-image: url({{ one_news.main_image|thumbnail_url:'default' }});"></div>
+            </div>
+            <!-- End Article Image -->
+
+            <!-- Article Content -->
+            <div class="col-sm-7 g-px-0--sm">
+                <div class="u-info-v1-1 g-height-200 g-bg-gray-light-v5 g-bg-gray-light-gradient-v1--after g-pa-20-30-0">
+                    <h3 class="h6 g-font-weight-600 text-uppercase">
+                        <a class="u-link-v5 g-color-black g-color-primary--hover" href="{{ one_news.get_absolute_url }}">
+                            {% if LANGUAGE_CODE == 'en' %}
+                                {{ one_news.title|slice:":41" }}...
+                            {% elif LANGUAGE_CODE == 'ru' %}
+                                {{ one_news.title_ru|slice:":41" }}...
+                            {% elif LANGUAGE_CODE == 'uk' %}
+                                {{ one_news.title_uk|slice:":41" }}...
+                            {% endif %}
+                        </a>
+                    </h3>
+                    <div class="small g-color-primary">
+                        <time>{{ one_news.date_published|date:"d b, Y" }}</time>
+                    </div>
+
+                    <div>
+                        {% if LANGUAGE_CODE == 'en' %}
+                            {{ one_news.content|striptags|slice:":50" }}...
+                        {% elif LANGUAGE_CODE == 'ru' %}
+                            {{ one_news.content_ru|striptags|slice:":50" }}...
+                        {% elif LANGUAGE_CODE == 'uk' %}
+                            {{ one_news.content_uk|striptags|slice:":50" }}...
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!-- End Article Content -->
+        </div>
+        <!-- End Article -->
+        </div>
+    {% endfor %}
+
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/unify-dzsparallaxer.js' %}"></script>
+{% endblock javascript %}

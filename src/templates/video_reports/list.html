@@ -1,0 +1,108 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block title %}{% trans 'Videoreports' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-chosen.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-slick.css' %}">
+<link rel="stylesheet" href="{% static 'css/filter.css' %}">
+{% endblock stylesheet %}
+
+
+{% block nav_videoreports %}style="color: white;"{% endblock nav_videoreports %}
+
+
+{% block content %}
+
+{% include 'main_app/subnav.html' %}
+
+<div class="mt-4 mb-5 container-fluid" style="max-width: 1190px;">
+    <form class="float-right mt-1 col-sm-6 col-md-3 g-mb-30" action="{% url 'video_reports:video-reports-list' %}" method="get">
+        <select class="js-custom-select w-100 u-select-v2 g-brd-yes g-color-black g-color-primary--hover g-bg-white text-left g-rounded-30 g-pl-25 g-py-12" data-placeholder="{% trans 'Place' %}" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" name="place" onchange="form.submit();" title="" id="id_place">
+            <option></option>
+            {% for value, text in video_reports_filter.place.field.choices %}
+            <option class="g-brd-secondary-light-v2 g-color-black g-color-white--active g-bg-primary--active" value="{{ value }}"{% if video_reports_filter.place.data == value %} selected="selected"{% endif %}>{{ text }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <h2 class="text-center text-uppercase text-secondary mb-5">{% trans 'Videoreports' %}</h2>
+
+    <form class="mobile col-sm-6 col-md-3 g-mb-30" action="{% url 'video_reports:video-reports-list' %}" method="get">
+        <select class="js-custom-select w-100 u-select-v2 g-brd-yes g-color-black g-color-primary--hover g-bg-white text-left g-rounded-30 g-pl-25 g-py-12" data-placeholder="{% trans 'Place' %}" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" name="place" onchange="form.submit();" title="" id="id_place">
+            <option value="">{% trans 'Place' %}</option>
+            {% for value, text in video_reports_filter.place.field.choices %}
+            <option class="g-brd-secondary-light-v2 g-color-black g-color-white--active g-bg-primary--active" value="{{ value }}"{% if video_reports_filter.place.data == value %} selected="selected"{% endif %}>{{ text }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+
+    <div class="sec3-items infinite-container">
+        {% for video_report in video_reports_page %}
+        <div class="sec3-items-item infinite-item">
+            <a href="{{ video_report.0.get_absolute_url }}" class="sec3-items-item-a">
+                <img class="sec3-items-item-bg" src="{{ video_report.0.image|thumbnail_url:'default' }}" loading="lazy">
+                <div class="sec3-items-item-date dark">
+                    <div class="sec3-items-item-date-val">
+                        {{ video_report.0.date|date:"d" }}
+                    </div>
+                    {{ video_report.0.date|date:"b" }}
+                </div>
+                <div class="sec3-items-item-t1">
+                    {{ video_report.0.title }}
+                </div>
+                <div class="sec3-items-item-t2">
+                    <a href="{{ video_report.0.place.get_absolute_url }}">{{ video_report.0.place }}</a>
+                </div>
+                <div class="sec3-items-item-v">
+                    <i class="fas fa-eye sec3-items-item-v-img" ></i>
+                    {{ video_report.0.num_views }}
+                </div>
+                <div class="sec3-items-item-l">
+                    <i class="fas fa-thumbs-up sec3-items-item-l-img"></i>
+                    {{ video_report.1 }}
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center">
+        {% if video_reports_page.has_next %}
+        <a class="infinite-more-link" href="?{% for value, text in video_reports_filter.place.field.choices %}{% if video_reports_filter.place.data == value %}place={{ value }}&{% endif %}{% endfor %}page={{ video_reports_page.next_page_number }}">
+            <img src="{% static 'preloaders/loading.gif' %}" width="16" height="16">
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/unify-core.js' %}"></script>
+<script src="{% static 'js/unify-chosen.js' %}"></script>
+<script src="{% static 'js/unify-select.js' %}"></script>
+<script src="{% static 'js/jquery-waypoints.min.js' %}"></script>
+<script src="{% static 'js/infinite.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.HSCore.components.HSSelect.init('.js-custom-select');
+    });
+    
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0]
+    });
+</script>
+{% endblock javascript %}

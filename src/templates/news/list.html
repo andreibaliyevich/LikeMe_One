@@ -1,0 +1,97 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block title %}{% trans 'News' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-slick.css' %}">
+{% endblock stylesheet %}
+
+
+{% block nav_news %}style="color: white;"{% endblock nav_news %}
+
+
+{% block content %}
+
+{% include 'main_app/subnav.html' %}
+
+<div class="mt-4 mb-5 container-fluid" style="max-width: 1190px;">
+    <h2 class="text-center text-secondary">{% trans 'News of club and restaurant life of our city' %}</h2>
+
+    <div class="sec1-items infinite-container">
+        {% for one_news in news_page %}
+        <div class="sec1-items-item infinite-item">
+            <div class="sec1-items-item-img">
+                <img src="{{ one_news.main_image|thumbnail_url:'default' }}" loading="lazy">
+            </div>
+            <div class="sec1-items-item-text">
+                <div class="sec1-items-item-text-t1">
+                    <a href="{% url 'news:news-list-by-author' one_news.author.id %}">
+                        {% if one_news.author.first_name %}{{ one_news.author.first_name }} {{ one_news.author.last_name }}{% else %} {{ one_news.author.username }}{% endif %}
+                    </a>
+                </div>
+                <div class="sec1-items-item-text-t2 text-truncate">
+                    <a href="{{ one_news.get_absolute_url }}" class="sec1-items-item-text-t2 text-truncate">
+                        {% if LANGUAGE_CODE == 'en' %}
+                            {{ one_news.title }}
+                        {% elif LANGUAGE_CODE == 'ru' %}
+                            {{ one_news.title_ru }}
+                        {% elif LANGUAGE_CODE == 'uk' %}
+                            {{ one_news.title_uk }}
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="sec1-items-item-text-t3">
+                    {% if LANGUAGE_CODE == 'en' %}
+                        {{ one_news.content|striptags|truncatechars:'110' }}
+                    {% elif LANGUAGE_CODE == 'ru' %}
+                        {{ one_news.content_ru|striptags|truncatechars:'110' }}
+                    {% elif LANGUAGE_CODE == 'uk' %}
+                        {{ one_news.content_uk|striptags|truncatechars:'110' }}
+                    {% endif %}
+                </div>
+                <div class="sec1-items-item-text-t4">
+                    <a href="{{ one_news.get_absolute_url }}" class="sec1-items-item-text-t4-a">
+                        {% trans 'Read more' %} <i class="fas fa-arrow-right" style="margin-left: 6px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center">
+        {% if news_page.has_next %}
+        <a class="infinite-more-link" href="?page={{ news_page.next_page_number }}">
+            <img src="{% static 'preloaders/loading.gif' %}" width="16" height="16">
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/unify-core.js' %}"></script>
+<script src="{% static 'js/jquery-waypoints.min.js' %}"></script>
+<script src="{% static 'js/infinite.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.HSCore.components.HSSelect.init('.js-custom-select');
+    });
+
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0]
+    });
+</script>
+{% endblock javascript %}

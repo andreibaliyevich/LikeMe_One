@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ site_name }}">
+    <title>{{ site_name }} | {% trans 'Error 500' %}</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- Web Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- my CSS -->
+    <link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+    <link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+    <link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+</head>
+
+<body>
+    <main class="g-min-height-100vh g-flex-centered g-pa-15">
+        <div class="text-center g-flex-centered-item g-position-rel g-pb-15">
+            <div class="g-font-size-180 g-font-size-240--sm g-line-height-1 g-font-weight-600er g-color-gray-light-v4">500</div>
+
+            <div class="g-absolute-centered">
+                <h1 class="g-color-black g-mt-minus-8 mb-0">500&nbsp;Server&nbsp;Error</h1>
+
+                <hr class="g-brd-gray-light-v3 g-my-15">
+
+                <p class="g-font-size-18 mb-0"><a href="{% url 'main_app:index' %}" class="g-color-black g-color-primary--hover g-text-no-underline--hover">← Home Page</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{% static 'js/jquery-migrate.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

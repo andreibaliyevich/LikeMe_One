@@ -1,0 +1,36 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+{% block title %}{% trans 'Add Announcement' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+{% bootstrap_javascript jquery='full' %}
+{{ announcement_form.media }}
+{% endblock stylesheet %}
+
+
+{% block announcements_active %} active{% endblock announcements_active %}
+
+
+{% block admin_dashboard_content %}
+
+<br>
+
+{% if message %}
+    <p>{% trans 'Error!' %}</p>
+{% endif %}
+
+<form action="{% url 'admin_dashboard:add-announcement' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form announcement_form %}
+    <button class="btn btn-warning" type="submit">{% trans 'Add Announcement' %}</button>
+</form>
+
+{% endblock admin_dashboard_content %}

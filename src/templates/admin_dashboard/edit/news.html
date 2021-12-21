@@ -1,0 +1,40 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+{% block title %}{% trans 'Edit News' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+
+<!-- TinyMCE 4 -->
+{{ news_form.media }}
+{% endblock stylesheet %}
+
+
+{% block news_active %} active{% endblock news_active %}
+
+
+{% block admin_dashboard_content %}
+
+<br>
+
+{% if message %}
+    <p>{% trans 'Error!' %}</p>
+{% endif %}
+
+<form action="{% url 'admin_dashboard:edit-news' news_id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form news_form %}
+    <button class="btn btn-warning" type="submit">{% trans 'Edit News' %}</button>
+    <a href="{% url 'admin_dashboard:delete-news' news_id %}">
+        <button type="button" class="btn btn-dark">{% trans 'Delete News' %}</button>
+    </a>
+</form>
+
+{% endblock admin_dashboard_content %}

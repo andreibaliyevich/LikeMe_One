@@ -1,0 +1,79 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block title %}{% trans 'Places' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+{% endblock stylesheet %}
+
+
+{% block places_active %} active{% endblock places_active %}
+
+
+{% block admin_dashboard_content %}
+
+<br>
+
+<a href="{% url 'admin_dashboard:add-place' %}">
+    <button type="button" class="btn btn-warning">{% trans 'Add Place' %}</button>
+</a>
+
+<form class="form-inline mt-3" action="{% url 'admin_dashboard:places-search' %}">
+    <div class="input-group">
+        <input class="form-control" type="text" placeholder="{% trans 'SEARCH' %}" aria-label="search" name="search" value="{{ request.GET.search }}">
+    </div>
+</form>
+
+<div class="row mt-3 g-mx-minus-10 g-mb-50 infinite-container">
+    {% for place in places_page %}
+    <div class="col-md-6 col-lg-6 g-px-10 infinite-item">
+    <!-- Article -->
+    <article class="media g-brd-around g-brd-gray-light-v4 g-bg-white rounded g-pa-10 g-mb-20">
+        <!-- Article Image -->
+        <div class="g-max-width-100 g-mr-15">
+            <img class="d-flex w-100" src="{{ place.image_place|thumbnail_url:'default' }}" loading="lazy">
+        </div>
+        <!-- End Article Image -->
+
+        <!-- Article Info -->
+        <div class="media-body align-self-center">
+            <h4 class="h5 g-mb-7">
+                <a class="g-color-black g-color-primary--hover g-text-underline--none--hover" href="{{ place.get_absolute_url }}">{{ place.name }}</a>
+            </h4>
+            <p class="mb-0">
+                <a href="{% url 'admin_dashboard:edit-place' place.id %}"><i class='fas fa-edit'></i></a>
+                &nbsp;&nbsp;&nbsp;
+                <a href="{% url 'admin_dashboard:delete-place' place.id %}"><i class='fas fa-trash'></i></a>
+            </p>
+        <!-- End Article Info -->
+        </div>
+    </article>
+    <!-- End Article -->
+    </div>
+    {% endfor %}
+</div>
+
+{% if places_page.has_next %}
+<a class="infinite-more-link" href="?page={{ places_page.next_page_number }}">More</a>
+{% endif %}
+
+{% endblock admin_dashboard_content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/jquery-waypoints.min.js' %}"></script>
+<script src="{% static 'js/infinite.min.js' %}"></script>
+<script type="text/javascript">    
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0]
+    });
+</script>
+{% endblock javascript %}

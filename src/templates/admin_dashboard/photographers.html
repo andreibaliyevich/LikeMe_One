@@ -1,0 +1,45 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}{% trans 'Photographers' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+{% endblock stylesheet %}
+
+
+{% block photographers_active %} active{% endblock photographers_active %}
+
+
+{% block admin_dashboard_content %}
+
+<br>
+
+<div>
+{% for photographer in photographers %}
+    <p>{% if photographer.get_full_name %}{{ photographer.get_full_name }}{% else %}{{ photographer.get_username }}{% endif %} <a href="{% url 'admin_dashboard:del-photographer' photographer.id %}">{% trans 'delete' %}</a></p>
+{% endfor %}
+</div>
+
+<!-- Search -->
+<form class="form-inline" action="{% url 'admin_dashboard:photographers-search' %}">
+    <div class="input-group">
+        <input class="form-control" type="text" placeholder="{% trans 'SEARCH' %}" aria-label="search" name="search" value="{{ request.GET.search }}">
+    </div>
+</form>
+
+<div>
+    {% if users_found %}
+        {% for user in users_found %}
+            <p>{% if user.get_full_name %}{{ user.get_full_name }}{% else %}{{ user.get_username }}{% endif %} <a href="{% url 'admin_dashboard:add-photographer' user.id %}">{% trans 'add' %}</a></p>
+        {% endfor %}
+    {% endif %}
+</div>
+<!-- Search end -->
+
+{% endblock admin_dashboard_content %}

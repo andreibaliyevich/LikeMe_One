@@ -1,0 +1,55 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}{% trans 'Vacancy' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+{% endblock stylesheet %}
+
+
+{% block content %}
+
+<div class="mt-4 mb-5 container-fluid" style="max-width: 1190px;">
+    <h1 class="text-center text-uppercase text-secondary">{% trans 'Vacancy' %}</h1>
+
+<h2>{% trans 'Photographer' %}</h2><br>
+
+<b>{% trans 'Requirements' %}:</b><br>
+• {% trans 'Club and restaurant shooting experience from the 1st year' %};<br>
+• {% trans 'Have your own professional equipment of a photographer of class FF, Light, Softbox or Octopus' %};<br><br>
+
+{% trans 'For feedback send a resume to the mail' %} <a href="mailto:info@likeme.one">info@likeme.one</a>
+<br><br>
+<img src="{% static 'images/vacph.jpg' %}" width="100%">
+<br><br><br>
+
+
+<h2>{% trans 'Journalist editor' %}</h2><br>
+
+<b>{% trans 'What to do' %}:</b><br>
+• {% trans 'Writing feature articles based on author information on 3 articles per week' %};<br>
+• {% trans 'Preparation of articles and texts for the site and social networks' %};<br>
+• {% trans 'Creating a positive reputation and info space around the company' %}.<br><br>
+
+<b>{% trans 'Requirements' %}:</b><br>
+• {% trans 'Work experience as a journalist, editor, copywriter for at least 1 year' %};<br>
+• {% trans 'Experience in text editors, as well as the ability to work with HTML' %};<br>
+• {% trans 'Developed writing, writing and editing skills' %};<br>
+• {% trans 'Reliability and teamwork' %}.<br><br>
+
+<b>{% trans 'Your advantage will be' %}:</b><br>
+• {% trans 'If you have experience writing restaurant-related articles' %}.<br><br>
+
+<b>{% trans 'Conditions' %}:</b><br>
+• {% trans 'Telework' %};<br>
+• {% trans 'The work schedule is free, meeting deadlines' %};<br>
+• {% trans 'Probationary period 2 weeks (paid)' %}.<br><br>
+<img src="{% static 'images/vacjr.jpg' %}" width="100%">
+</div>
+
+{% endblock content %}

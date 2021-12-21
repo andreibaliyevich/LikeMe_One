@@ -1,0 +1,39 @@
+{% extends "photographer_dashboard/base.html" %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+{% block title %}{% trans 'Edit Videoreport' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+{% bootstrap_javascript jquery='full' %}
+{{ video_report_form.media }}
+{% endblock stylesheet %}
+
+
+{% block video_reports_active %} active{% endblock video_reports_active %}
+
+
+{% block photographer_dashboard_content %}
+
+<br>
+
+{% if message %}
+    <p>{% trans 'Error!' %}</p>
+{% endif %}
+
+<form action="{% url 'photographer_dashboard:edit-video-report' video_report_id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form video_report_form %}
+    <button class="btn btn-warning" type="submit">{% trans 'Edit Videoreport' %}</button>
+    <a href="{% url 'photographer_dashboard:delete-video-report' video_report_id %}">
+        <button type="button" class="btn btn-dark">{% trans 'Delete Videoreport' %}</button>
+    </a>
+</form>
+
+{% endblock photographer_dashboard_content %}

@@ -1,0 +1,297 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% trans 'The best photos and videos for your event only with us. We are the media center in your city!' %}">
+    <meta name="keywords" content="{% trans 'Reportage, reports, photos, photographer, events, announcements, reading materials, banquets, interior photos, photographs, portrait photos, order a photographer, news, odessa, vinnytsia, kiev, kharkov, lviv' %}">
+    <meta name="author" content="Opium © 2020">
+
+    <!-- Pic -->
+    <meta property="og:image" content="{% static 'images/likeme-og.png' %}">
+    <meta property="og:url" content="https://www.likeme.one{{ request.get_full_path }}">
+    <meta property="og:description" content="LIKEME.ONE - {% trans 'The best photos and videos for your event only with us.' %}">
+	<meta property="og:title" content="LIKEME.ONE - {% trans 'The best photos and videos for your event only with us.' %}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LIKEME.ONE - {% trans 'The best photos and videos for your event only with us.' %}">
+
+    <!-- Google Analythincs -->
+    <meta name="google-site-verification" content="fWzlDlORGMKmNrAEZivb5MFPo84r5gd2Y1ZRtd4TVlY">
+
+    <title>{{ SITE_NAME }} | {% block title %}{% endblock title %} | {% trans 'Reports, Events, Exclusive photos of your city' %}</title>
+
+    <!-- Url -->
+    <link rel="image_src" href="{% static 'images/likeme-og.png' %}">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600%7cPlayfair+Display:400i" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1|Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- my CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158179454-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-158179454-1');
+    </script>
+    {% block stylesheet %}{% endblock stylesheet %}
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="nav-wrap">
+                            <div class="nav-wrap-burger hide990p">
+                                <div class="nav-wrap-burger-body">
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="nav-wrap-left">
+                                <a href="{% url 'main_app:index' %}" class="nav-wrap-left-a">
+                                    <img src="{% static 'images/logo.svg' %}" alt="" class="nav-wrap-left-a-img">
+                                    <img src="{% static 'images/logo-hover.svg' %}" alt="" class="nav-wrap-left-a-img hover">
+                                </a>
+                            </div>
+                            <div class="nav-wrap-middle">
+                                <ul class="nav-wrap-middle-ul">
+                                    <li class="nav-wrap-middle-ul-li">
+                                        <a href="{% url 'main_app:index' %}" class="nav-wrap-middle-ul-li-a"{% block nav_home %}{% endblock nav_home %}>{% trans 'Home' %}</a>
+                                    </li>
+                                    <li class="nav-wrap-middle-ul-li">
+                                        <a href="{% url 'announcements:announcements-list' %}" class="nav-wrap-middle-ul-li-a"{% block nav_announcements %}{% endblock nav_announcements %}>{% trans 'Announcements' %}</a>
+                                    </li>
+                                    <li class="nav-wrap-middle-ul-li">
+                                        <a href="{% url 'photo_reports:photo-reports-list' %}" class="nav-wrap-middle-ul-li-a"{% block nav_photoreports %}{% endblock nav_photoreports %}>{% trans 'Photoreports' %}</a>
+                                    </li>
+                                    <li class="nav-wrap-middle-ul-li">
+                                        <a href="{% url 'video_reports:video-reports-list' %}" class="nav-wrap-middle-ul-li-a"{% block nav_videoreports %}{% endblock nav_videoreports %}>{% trans 'Videoreports' %}</a>
+                                    </li>
+                                    <li class="nav-wrap-middle-ul-li">
+                                        <a href="{% url 'places:places-list' %}" class="nav-wrap-middle-ul-li-a"{% block nav_places %}{% endblock nav_places %}>{% trans 'Places' %}</a>
+                                    </li>
+                                    <li class="nav-wrap-middle-ul-li">
+                                        <a href="{% url 'news:news-list' %}" class="nav-wrap-middle-ul-li-a"{% block nav_news %}{% endblock nav_news %}>{% trans 'News' %}</a>
+                                    </li>
+                                    <li class="nav-wrap-middle-ul-li hide990p">
+                                        <div class="dropdown">
+                                        {% if user.is_authenticated %}
+                                            <a class="nav-link dropdown-toggle mt-1 py-1" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if user.get_short_name %}{{ user.get_short_name }}{% else %}{{ user.get_username }}{% endif %}</a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                                {% if user_is_admin %}
+                                                <a class="dropdown-item" href="{% url 'admin_dashboard:admins' %}">{% trans 'Admin panel' %}</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="{% url 'admin_dashboard:photographer-orders' %}">{% trans 'Photographer Orders' %} <span class="badge badge-warning">{{ po_new_count }}</span></a>
+                                                <div class="dropdown-divider"></div>
+                                                {% endif %}
+
+                                                {% if user_is_photographer %}
+                                                <a class="dropdown-item" href="{% url 'photographer_dashboard:photo-reports' %}">{% trans 'Photographer panel' %}</a>
+                                                <div class="dropdown-divider"></div>
+                                                {% endif %}
+
+                                                {% if user.has_usable_password %}
+                                                <a class="dropdown-item" href="{% url 'main_app:password-change' %}">{% trans 'Change password' %}</a>
+                                                <div class="dropdown-divider"></div>
+                                                {% endif %}
+
+                                                <a class="dropdown-item" href="{% url 'main_app:logout' %}?next={{ request.get_full_path }}">{% trans 'Log out' %}</a>
+                                            </div>
+                                            {% else %}
+                                            <a class="nav-link mt-1 py-1" href="{% url 'main_app:login' %}?next={{ request.get_full_path }}" id="dropdown01">{% trans 'Log in' %} <i class="fas fa-lock"></i></i></a>
+                                        {% endif %}
+                                        </div>
+                                    </li>
+                                    <li class="nav-wrap-middle-ul-li">
+                                        <div class="nav-wrap-right-dropdown hide990p">
+                                            <div class="dropdown">
+                                                {% if LANGUAGE_CODE == 'en' %}
+                                                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% for region in regions %}{% if user_region == region.slug %}{{ region.name }}{% endif %}{% endfor %}</a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdown02">
+                                                    {% for region in regions %}
+                                                    <a class="dropdown-item" href="{% url 'main_app:set-region' region.slug %}">{{ region.name }}</a>
+                                                    {% if not forloop.last %}<div class="dropdown-divider"></div>{% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                                {% elif LANGUAGE_CODE == 'ru' %}
+                                                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% for region in regions %}{% if user_region == region.slug %}{{ region.name_ru }}{% endif %}{% endfor %}</a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdown02">
+                                                    {% for region in regions %}
+                                                    <a class="dropdown-item" href="{% url 'main_app:set-region' region.slug %}">{{ region.name_ru }}</a>
+                                                    {% if not forloop.last %}<div class="dropdown-divider"></div>{% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                                {% elif LANGUAGE_CODE == 'uk' %}
+                                                <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% for region in regions %}{% if user_region == region.slug %}{{ region.name_uk }}{% endif %}{% endfor %}</a>
+                                                <div class="dropdown-menu" aria-labelledby="dropdown02">
+                                                    {% for region in regions %}
+                                                    <a class="dropdown-item" href="{% url 'main_app:set-region' region.slug %}">{{ region.name_uk }}</a>
+                                                    {% if not forloop.last %}<div class="dropdown-divider"></div>{% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="nav-wrap-right">
+                                <div class="nav-wrap-right-login hide990">
+                                    <div class="dropdown">
+                                    {% if user.is_authenticated %}
+                                        <a class="nav-link dropdown-toggle mt-1 py-1" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=":after { content: none }">{% if user.get_short_name %}{{ user.get_short_name }}{% else %}{{ user.get_username }}{% endif %}</a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                            {% if user_is_admin %}
+                                            <a class="dropdown-item" href="{% url 'admin_dashboard:admins' %}">{% trans 'Admin panel' %}</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{% url 'admin_dashboard:photographer-orders' %}">{% trans 'Photographer Orders' %} <span class="badge badge-warning">{{ po_new_count }}</span></a>
+                                            <div class="dropdown-divider"></div>
+                                            {% endif %}
+
+                                            {% if user_is_photographer %}
+                                            <a class="dropdown-item" href="{% url 'photographer_dashboard:photo-reports' %}">{% trans 'Photographer panel' %}</a>
+                                            <div class="dropdown-divider"></div>
+                                            {% endif %}
+
+                                            {% if user.has_usable_password %}
+                                            <a class="dropdown-item" href="{% url 'main_app:password-change' %}">{% trans 'Change password' %}</a>
+                                            <div class="dropdown-divider"></div>
+                                            {% endif %}
+                                            
+                                            <a class="dropdown-item" href="{% url 'main_app:logout' %}?next={{ request.get_full_path }}">{% trans 'Log out' %}</a>
+                                        </div>
+                                        {% else %}
+                                        <a class="nav-link mt-1 py-1" href="{% url 'main_app:login' %}?next={{ request.get_full_path }}" id="dropdown01">{% trans 'Log in' %} <i class="fas fa-lock"></i></i></a>
+                                    {% endif %}
+                                    </div>
+                                </div>
+                                <div class="nav-wrap-right-find">
+                                    <a href="{% url 'main_app:search' %}" class="nav-wrap-right-find-a">
+                                        <svg class="nav-wrap-right-find-a-svg" xmlns="http://www.w3.org/2000/svg" viewBox="5605.991 836 16.958 16.95"><path data-name="Path 150" d="M5612.5 836a6.493 6.493 0 0 1 5.29 10.27l4.88 4.88a1.076 1.076 0 0 1-1.52 1.52l-4.88-4.88a6.5 6.5 0 1 1-3.77-11.79zm0 11a4.5 4.5 0 1 0-4.5-4.5 4.5 4.5 0 0 0 4.5 4.5z"></path></svg>
+                                    </a>
+                                </div>
+                                <div class="nav-wrap-right-camera">
+                                    <a href="{% url 'main_app:photographer-order' %}" class="nav-wrap-right-camera-a">
+                                        <i class="fas fa-camera"></i>
+                                    </a>
+                                </div>
+                                <div class="nav-wrap-right-dropdown hide990">
+                                    <div class="dropdown">
+                                        {% if LANGUAGE_CODE == 'en' %}
+                                        <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% for region in regions %}{% if user_region == region.slug %}{{ region.name }}{% endif %}{% endfor %}</a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown02">
+                                            {% for region in regions %}
+                                            <a class="dropdown-item" href="{% url 'main_app:set-region' region.slug %}">{{ region.name }}</a>
+                                            {% if not forloop.last %}<div class="dropdown-divider"></div>{% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        {% elif LANGUAGE_CODE == 'ru' %}
+                                        <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% for region in regions %}{% if user_region == region.slug %}{{ region.name_ru }}{% endif %}{% endfor %}</a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown02">
+                                            {% for region in regions %}
+                                            <a class="dropdown-item" href="{% url 'main_app:set-region' region.slug %}">{{ region.name_ru }}</a>
+                                            {% if not forloop.last %}<div class="dropdown-divider"></div>{% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        {% elif LANGUAGE_CODE == 'uk' %}
+                                        <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% for region in regions %}{% if user_region == region.slug %}{{ region.name_uk }}{% endif %}{% endfor %}</a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdown02">
+                                            {% for region in regions %}
+                                            <a class="dropdown-item" href="{% url 'main_app:set-region' region.slug %}">{{ region.name_uk }}</a>
+                                            {% if not forloop.last %}<div class="dropdown-divider"></div>{% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {% block content %}{% endblock content %}
+
+    <footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="fsec1">
+                        <div class="fsec1-left">
+                            <ul class="fsec1-left-ul">
+                                <li class="fsec1-left-ul-li">
+                                    <a href="{% url 'main_app:about' %}" class="fsec1-left-ul-li-a">
+                                        {% trans 'About LikeMe' %}
+                                    </a>
+                                </li>
+                                <li class="fsec1-left-ul-li">
+                                    <div class="dropup">
+                                        <a class="nav-link dropdown-toggle fsec1-left-ul-li-a" href="#" id="dropdown03" data-toggle="dropup" aria-haspopup="true" aria-expanded="false">{% if LANGUAGE_CODE == 'en' %}English{% elif LANGUAGE_CODE == 'ru' %}Русский{% elif LANGUAGE_CODE == 'uk' %}Українська{% endif %}</a>
+                                        <div class="dropdown-menu dropdown-menu-top" aria-labelledby="dropdown03">
+                                            <a class="dropdown-item" href="{% url 'main_app:set-language' 'ru' %}">Русский</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{% url 'main_app:set-language' 'uk' %}">Українська</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="{% url 'main_app:set-language' 'en' %}">English</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="fsec1-left-ul-li">
+                                    <a href="{% url 'main_app:policy' %}" class="fsec1-left-ul-li-a">
+                                        {% trans 'Terms of Use' %}
+                                    </a>
+                                </li>
+                                <li class="fsec1-left-ul-li">
+                                    <a href="{% url 'main_app:vacancy' %}" class="fsec1-left-ul-li-a">
+                                        {% trans 'Vacancy' %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fsec1-right">
+                            <a href="https://opium.work" class="fsec1-right-a" target="_blank">
+                                <img src="{% static 'images/opium-logo.png' %}" class="fsec1-right-a-img" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- button-go-top -->
+    <a class="button-go-top" href="#"><i class='fas fa-chevron-up'></i></a>
+    <!-- button-go-top end -->
+
+    <!-- Scripts-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/unify-slick.js' %}"></script>
+    <script src="{% static 'js/core.js' %}"></script>
+    {% block javascript %}{% endblock javascript %}
+</body>
+</html>

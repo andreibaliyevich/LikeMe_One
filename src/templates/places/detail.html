@@ -1,0 +1,179 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}{{ place.name }}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+<link rel="stylesheet" href="{% static 'css/entry-hgroup.css' %}">
+<link rel="stylesheet" href="{% static 'css/places.css' %}">
+{% endblock stylesheet %}
+
+
+{% block nav_places %}style="color: white;"{% endblock nav_places %}
+
+
+{% block content %}
+
+<article class="mt-4 mb-5 container-fluid" style="max-width: 1190px;">
+<header class="text-center g-width-60x--md mx-auto g-mb-60">
+    <div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
+        <h2 class="h3 u-heading-v2__title g-color-gray-dark-v2 text-uppercase g-font-weight-600">{{ place.name }}</h2>
+        {% if user_is_admin or user_is_photographer %}
+        <p class="m-2 text-center">
+            {% if user_is_admin %}
+            <a href="{% url 'admin_dashboard:edit-place' place.id %}">
+                <button type="button" class="btn btn-warning">{% trans 'Edit Place' %}</button>
+            </a>
+            {% endif %}
+
+            {% if user_is_photographer %}
+            <a href="{% url 'photographer_dashboard:add-photo-report-to-place' place.id %}">
+                <button type="button" class="btn btn-warning">{% trans 'Add Photoreport' %}</button>
+            </a>
+            {% endif %}
+        </p>
+        {% endif %}
+    </div>
+    
+    {% if LANGUAGE_CODE == 'en' and place.description %}
+    <p class="lead">
+        {{ place.description }}
+    </p>
+    {% elif LANGUAGE_CODE == 'ru' and place.description_ru %}
+    <p class="lead">
+        {{ place.description_ru }}
+    </p>
+    {% elif LANGUAGE_CODE == 'uk' and place.description_uk %}
+    <p class="lead">
+        {{ place.description_uk }}
+    </p>
+    {% endif %}
+</header>
+
+<div class="row">
+    <div class="col-lg-6 align-self-center">
+        <img class="img-fluid" src="{{ place.image_place.url }}" alt="Image description">
+    </div>
+
+    <div class="col-lg-6 align-self-center g-pl-30--lg g-mb-50 g-mb-0--lg">
+        {% if place.address %}
+        <p class="g-mb-30">
+            <i class='fas fa-map-marker-alt'></i>&nbsp;{% trans 'Address' %}: {{ place.address }}
+        </p>
+        {% endif %}
+
+        <div class="row">
+        <div class="col-sm-6">
+        <ul class="list-unstyled g-color-gray-dark-v4 g-mb-30 g-mb-0--sm">
+            {% if place.phone_number %}
+            <li class="d-flex g-mb-6">
+                <i class='fas fa-phone-volume'></i>&nbsp;{% trans 'Phone Number' %}: {{ place.phone_number }}
+            </li>
+            {% endif %}
+            {% if place.url_address %}
+            <li class="d-flex g-mb-6">
+                <i class='fas fa-globe'></i>&nbsp;{% trans 'Website' %}:&nbsp;<a href="{{ place.url_address }}" class="overflow-url">{{ place.url_address }}</a>
+            </li>
+            {% endif %}
+            {% if place.working_hours %}
+            <li class="d-flex g-mb-6">
+                <i class='fas fa-clock'></i>&nbsp;{% trans 'Working Hours' %}: {{ place.working_hours }}
+            </li>
+            {% endif %}
+            {% if place.average_check %}
+            <li class="d-flex g-mb-6">
+                <i class="fas fa-hryvnia"></i>&nbsp;{% trans 'Average Check' %}: {{ place.average_check }}
+            </li>
+            {% endif %}
+            <li class="d-flex g-mb-6">
+                <i class='fas fa-credit-card'></i>&nbsp;{% trans 'Bank Card' %}:
+                {% if place.bank_card %}
+                    {% trans 'Yes' %}
+                {% else %}
+                    {% trans 'No' %}
+                {% endif %}
+            </li>
+            <li class="d-flex g-mb-6">
+                <i class='fas fa-concierge-bell'></i>&nbsp;{% trans 'Catering' %}:
+                {% if place.catering %}
+                    {% trans 'Yes' %}
+                {% else %}
+                    {% trans 'No' %}
+                {% endif %}
+            </li>
+            <li class="d-flex g-mb-6">
+                <i class='fas fa-wifi'></i>&nbsp;Wi-Fi:
+                {% if place.wi_fi %}
+                    {% trans 'Yes' %}
+                {% else %}
+                    {% trans 'No' %}
+                {% endif %}
+            </li>
+            <li class="d-flex g-mb-6">
+                <i class='fas fa-parking'></i>&nbsp;{% trans 'Parking' %}:
+                {% if place.parking %}
+                    {% trans 'Yes' %}
+                {% else %}
+                    {% trans 'No' %}
+                {% endif %}
+            </li>
+            <li class="d-flex g-mb-6">
+                <i class='fas fa-truck'></i>&nbsp;{% trans 'Delivery' %}:
+                {% if place.delivery %}
+                    {% trans 'Yes' %}
+                {% else %}
+                    {% trans 'No' %}
+                {% endif %}
+            </li>                 
+        </ul>
+        </div>
+        </div>
+    </div>
+</div>
+</article>
+
+<div class="my-4 mx-4">
+    {% if photo_reports_tuples %}
+    <h3 class="text-center text-uppercase text-secondary">{% trans 'All photo reports in this institution' %}</h3>
+    <div class="sec3-items">
+        {% for photo_report in photo_reports_tuples %}
+        <div class="sec3-items-item">
+            <a href="{{ photo_report.0.get_absolute_url }}" class="sec3-items-item-a">
+                <img class="sec3-items-item-bg" src="{{ photo_report.0.main_image.url }}" loading="lazy">
+                <div class="sec3-items-item-date dark">
+                    <div class="sec3-items-item-date-val">
+                        {{ photo_report.0.date|date:"d" }}
+                    </div>
+                    {{ photo_report.0.date|date:"b" }}
+                </div>
+                <div class="sec3-items-item-t1">
+                    {{ photo_report.0.title }}
+                </div>
+                <div class="sec3-items-item-t2">
+                    {{ photo_report.0.place }}
+                </div>
+                <div class="sec3-items-item-v">
+                    {% if photo_report.0.is_plus_18 %}+18{% endif %}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="fas fa-eye sec3-items-item-v-img" ></i>
+                    {{ photo_report.0.num_views }}
+                </div>
+                <div class="sec3-items-item-l">
+                    <i class="fas fa-thumbs-up sec3-items-item-l-img"></i>
+                    {{ photo_report.1 }}
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+{% endblock content %}

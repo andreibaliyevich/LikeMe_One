@@ -1,0 +1,167 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block title %}{% trans 'Places' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-chosen.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-slick.css' %}">
+<link rel="stylesheet" href="{% static 'css/filter.css' %}">
+{% endblock stylesheet %}
+
+
+{% block nav_places %}style="color: white;"{% endblock nav_places %}
+
+
+{% block content %}
+
+{% include 'main_app/subnav.html' %}
+
+<div class="mt-4 mb-5 container-fluid" style="max-width: 1190px;">
+    <h2 class="text-center text-uppercase text-secondary mt-4">{% trans 'Places' %}</h2>
+
+    <form class="form-inline places-filter" action="{% url 'places:places-list' %}" method="get">
+        <select class="js-custom-select w-100 u-select-v2 g-brd-yes g-color-black g-color-primary--hover g-bg-white text-left g-rounded-30 g-pl-25 g-py-12 col-sm-6 col-md-3 g-mb-30 m-1" data-placeholder="{% trans 'Place Category' %}" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" name="type_place" onchange="form.submit();" title="" id="id_type_place">
+            <option></option>
+            {% for value, text in places_filter.type_place.field.choices %}
+            <option class="g-brd-secondary-light-v2 g-color-black g-color-white--active g-bg-primary--active" value="{{ value }}" {% if places_filter.type_place.data == value %} selected="selected" {% endif %}>{{ text }}</option>
+            {% endfor %}
+        </select>
+
+        <select class="js-custom-select w-100 u-select-v2 g-brd-yes g-color-black g-color-primary--hover g-bg-white text-left g-rounded-30 g-pl-25 g-py-12 col-sm-6 col-md-3 g-mb-30 m-1" data-placeholder="{% trans 'District' %}" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" name="district_place" onchange="form.submit();" title="" id="id_district_place">
+            <option></option>
+            {% for value, text in places_filter.district_place.field.choices %}
+            <option class="g-brd-secondary-light-v2 g-color-black g-color-white--active g-bg-primary--active" value="{{ value }}" {% if places_filter.district_place.data == value %} selected="selected" {% endif %}>{{ text }}</option>
+            {% endfor %}
+        </select>
+
+        <select class="js-custom-select w-100 u-select-v2 g-brd-yes g-color-black g-color-primary--hover g-bg-white text-left g-rounded-30 g-pl-25 g-py-12 col-sm-6 col-md-3 g-mb-30 m-1" data-placeholder="{% trans 'Kitchen' %}" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" name="kitchen_place" onchange="form.submit();" title="" id="id_kitchen_place">
+            <option></option>
+            {% for value, text in places_filter.kitchen_place.field.choices %}
+            <option class="g-brd-secondary-light-v2 g-color-black g-color-white--active g-bg-primary--active" value="{{ value }}" {% if places_filter.kitchen_place.data == value %} selected="selected" {% endif %}>{{ text }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <form class="form-inline places-filter-mobile" action="{% url 'places:places-list' %}" method="get">
+        <select class="js-custom-select w-100 u-select-v2 g-brd-yes g-color-black g-color-primary--hover g-bg-white text-left g-rounded-30 g-pl-25 g-py-12 col-sm-6 col-md-3 g-mb-30 m-1" data-placeholder="{% trans 'Place Category' %}" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" name="type_place" onchange="form.submit();" title="" id="id_type_place">
+            <option value="">{% trans 'Place Category' %}</option>
+            {% for value, text in places_filter.type_place.field.choices %}
+            <option class="g-brd-secondary-light-v2 g-color-black g-color-white--active g-bg-primary--active" value="{{ value }}" {% if places_filter.type_place.data == value %} selected="selected" {% endif %}>{{ text }}</option>
+            {% endfor %}
+        </select>
+
+        <select class="js-custom-select w-100 u-select-v2 g-brd-yes g-color-black g-color-primary--hover g-bg-white text-left g-rounded-30 g-pl-25 g-py-12 col-sm-6 col-md-3 g-mb-30 m-1" data-placeholder="{% trans 'District' %}" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" name="district_place" onchange="form.submit();" title="" id="id_district_place">
+            <option value="">{% trans 'District' %}</option>
+            {% for value, text in places_filter.district_place.field.choices %}
+            <option class="g-brd-secondary-light-v2 g-color-black g-color-white--active g-bg-primary--active" value="{{ value }}" {% if places_filter.district_place.data == value %} selected="selected" {% endif %}>{{ text }}</option>
+            {% endfor %}
+        </select>
+
+        <select class="js-custom-select w-100 u-select-v2 g-brd-yes g-color-black g-color-primary--hover g-bg-white text-left g-rounded-30 g-pl-25 g-py-12 col-sm-6 col-md-3 g-mb-30 m-1" data-placeholder="{% trans 'Kitchen' %}" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" name="kitchen_place" onchange="form.submit();" title="" id="id_kitchen_place">
+            <option value="">{% trans 'Kitchen' %}</option>
+            {% for value, text in places_filter.kitchen_place.field.choices %}
+            <option class="g-brd-secondary-light-v2 g-color-black g-color-white--active g-bg-primary--active" value="{{ value }}" {% if places_filter.kitchen_place.data == value %} selected="selected" {% endif %}>{{ text }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <section class="places">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="places-items infinite-container">
+                    {% for place in places_page %}
+                    <div class="places-items-item infinite-item">
+                        <a href="{{ place.get_absolute_url }}">
+                            <img class="places-items-item-img" src="{{ place.image_place|thumbnail_url:'default' }}" loading="lazy">
+                            <div class="places-items-item-t1">
+                                {{ place.name }}
+                            </div>
+                            <div class="places-items-item-t2">
+                                {% if place.bar %}{% trans 'Bar' %}&nbsp;{% endif %}
+                                {% if place.bowling %}{% trans 'Bowling' %}&nbsp;{% endif %}
+                                {% if place.brewery %}{% trans 'Brewery' %}&nbsp;{% endif %}
+                                {% if place.hookah %}{% trans 'Hookah' %}&nbsp;{% endif %}
+                                {% if place.karaoke %}{% trans 'Karaoke' %}&nbsp;{% endif %}
+                                {% if place.coffee_house %}{% trans 'Coffee House' %}{% endif %}
+                                {% if place.night_club %}{% trans 'Night Club' %}&nbsp;{% endif %}
+                                {% if place.veranda %}{% trans 'Veranda' %}&nbsp;{% endif %}
+                                {% if place.restaurant %}{% trans 'Restaurant' %}&nbsp;{% endif %}
+                                {% if place.strip_club %}{% trans 'Strip Club' %}&nbsp;{% endif %}
+                                {% if place.educational_project %}{% trans 'Educational Project' %}&nbsp;{% endif %}
+                                {% if place.entertainment %}{% trans 'Entertainment (various events)' %}&nbsp;{% endif %}
+                                {% if place.health %}{% trans 'Health (or fitness)' %}&nbsp;{% endif %}
+                                {% if place.store %}{% trans 'Store' %}{% endif %}
+                            </div>
+                            <div class="places-items-item-t3">
+                                <i class="fas fa-utensils"></i>
+                                {% if place.kitchen_author %}{% trans 'Kitchen Author' %}&nbsp;{% endif %}
+                                {% if place.kitchen_azerbaijani %}{% trans 'Kitchen Azerbaijani' %}&nbsp;{% endif %}
+                                {% if place.kitchen_american %}{% trans 'Kitchen American' %}&nbsp;{% endif %}
+                                {% if place.kitchen_armenian %}{% trans 'Kitchen Armenian' %}&nbsp;{% endif %}
+                                {% if place.kitchen_belarusian %}{% trans 'Kitchen Belarusian' %}&nbsp;{% endif %}
+                                {% if place.kitchen_european %}{% trans 'Kitchen European' %}&nbsp;{% endif %}
+                                {% if place.kitchen_indian %}{% trans 'Kitchen Indian' %}&nbsp;{% endif %}
+                                {% if place.kitchen_spanish %}{% trans 'Kitchen Spanish' %}&nbsp;{% endif %}
+                                {% if place.kitchen_italian %}{% trans 'Kitchen Italian' %}&nbsp;{% endif %}
+                                {% if place.kitchen_georgian %}{% trans 'Kitchen Georgian' %}&nbsp;{% endif %}
+                                {% if place.kitchen_mexican %}{% trans 'Kitchen Mexican' %}&nbsp;{% endif %}
+                                {% if place.kitchen_russian %}{% trans 'Kitchen Russian' %}&nbsp;{% endif %}
+                                {% if place.kitchen_ukrainian %}{% trans 'Kitchen Ukrainian' %}&nbsp;{% endif %}
+                                {% if place.kitchen_japanese %}{% trans 'Kitchen Japanese' %}&nbsp;{% endif %}
+                            </div>
+                            {% if place.address %}
+                            <div class="places-items-item-t4">
+                                <i class="fas fa-map-marker-alt"></i> {{ place.address }}
+                            </div>
+                            {% endif %}
+                            {% if place.average_check %}
+                            <div class="places-items-item-t5">
+                                <i class="fas fa-hryvnia"></i> {{ place.average_check }}
+                            </div>
+                            {% endif %}
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-center">
+        {% if places_page.has_next %}
+        <a class="infinite-more-link" href="?{% for value, text in places_filter.type_place.field.choices %}{% if places_filter.type_place.data == value %}type_place={{ value }}&{% endif %}{% endfor %}{% for value, text in places_filter.district_place.field.choices %}{% if places_filter.district_place.data == value %}district_place={{ value }}&{% endif %}{% endfor %}{% for value, text in places_filter.kitchen_place.field.choices %}{% if places_filter.kitchen_place.data == value %}kitchen_place={{ value }}&{% endif %}{% endfor %}page={{ places_page.next_page_number }}">
+            <img src="{% static 'preloaders/loading.gif' %}" width="16" height="16">
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/unify-core.js' %}"></script>
+<script src="{% static 'js/unify-chosen.js' %}"></script>
+<script src="{% static 'js/unify-select.js' %}"></script>
+<script src="{% static 'js/jquery-waypoints.min.js' %}"></script>
+<script src="{% static 'js/infinite.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.HSCore.components.HSSelect.init('.js-custom-select');
+    });
+    
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0]
+    });
+</script>
+{% endblock javascript %}

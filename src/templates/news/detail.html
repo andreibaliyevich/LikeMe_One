@@ -1,0 +1,133 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block title %}{% if LANGUAGE_CODE == 'en' %}{{ one_news.title }}{% elif LANGUAGE_CODE == 'ru' %}{{ one_news.title_ru }}{% elif LANGUAGE_CODE == 'uk' %}{{ one_news.title_uk }}{% endif %}{% endblock title %}
+
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+<link rel="stylesheet" href="{% static 'css/entry-hgroup.css' %}">
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
+{% endblock stylesheet %}
+
+
+{% block nav_news %}style="color: white;"{% endblock nav_news %}
+
+
+{% block content %}
+
+<section class="news">
+    <div class="container-fluid" style="max-width: 1190px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="news-mainImg">
+                    <img src="{{ one_news.main_image.url }}" alt="" class="news-mainImg-img">
+                    <div class="news-mainImg-title">{% if LANGUAGE_CODE == 'en' %}{{ one_news.title }}{% elif LANGUAGE_CODE == 'ru' %}{{ one_news.title_ru }}{% elif LANGUAGE_CODE == 'uk' %}{{ one_news.title_uk }}{% endif %}</div>
+                </div>
+
+                {% if user_is_admin %}
+                <div class="mt-2 text-center">
+                    <a href="{% url 'admin_dashboard:edit-news' one_news.id %}">
+                        <button type="button" class="btn btn-warning">{% trans 'Edit News' %}</button>
+                    </a>
+                    <a href="{% url 'admin_dashboard:delete-news' one_news.id %}">
+                        <button type="button" class="btn btn-dark">{% trans 'Delete News' %}</button>
+                    </a>
+                </div>
+                {% endif %}
+
+                <div class="news-text-body">
+                    <div class="news-text-body-date">
+                        {{ one_news.date_published|date:"DATE_FORMAT" }}
+                    </div>
+                    <div class="news-text-body-content">
+                        {% if LANGUAGE_CODE == 'en' %}
+                            {{ one_news.content|safe }}
+                        {% elif LANGUAGE_CODE == 'ru' %}
+                            {{ one_news.content_ru|safe }}
+                        {% elif LANGUAGE_CODE == 'uk' %}
+                            {{ one_news.content_uk|safe }}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="news-footer">
+                    <div class="news-author">
+                        {% if one_news.author.get_full_name %}{{ one_news.author.get_full_name }}{% else %}{{ one_news.author.get_username }}{% endif %}
+                    </div>
+                    <div class="news-tell">
+                        {% trans 'Share with friends:' %}
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ site_url_address }}{{ one_news.get_absolute_url }}" target="_blank" rel="nofollow" id="share-facebook-{{ one_news.id }}"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/intent/tweet?url={{ site_url_address }}{{ one_news.get_absolute_url }}&text={% if LANGUAGE_CODE == 'en' %}{{ one_news.title }}{% elif LANGUAGE_CODE == 'ru' %}{{ one_news.title_ru }}{% elif LANGUAGE_CODE == 'uk' %}{{ one_news.title_uk }}{% endif %}" target="_blank" rel="nofollow" id="share-twitter-{{ one_news.id }}"><i class="fab fa-twitter"></i></a>
+                        <a href="https://vk.com/share.php?url={{ site_url_address }}{{ one_news.get_absolute_url }}&title={% if LANGUAGE_CODE == 'en' %}{{ one_news.title }}{% elif LANGUAGE_CODE == 'ru' %}{{ one_news.title_ru }}{% elif LANGUAGE_CODE == 'uk' %}{{ one_news.title_uk }}{% endif %}&image={{ site_url_address }}{{ one_news.main_image.url }}&noparse=true" target="_blank" rel="nofollow" id="share-vk-{{ one_news.id }}"><i class="fab fa-vk"></i></a>
+                    </div>
+                    <div class="news-vw">
+                        <i class="fas fa-eye"></i>
+                        {{ one_news.num_views }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h5 class="mt-4">{% trans 'Tags:' %}</h5>
+        <ul class="u-list-inline">
+        {% for tag in tags %}
+        <li class="list-inline-item">
+            <a class="u-tags-v1 g-color-orange g-brd-around g-brd-orange g-bg-orange--hover g-color-white--hover g-rounded-50 g-py-4 g-px-15" href="{% url 'news:news-list-by-tag' tag %}">#{{ tag }}</a>
+        </li>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="news-more">
+    <div class="container-fluid" style="max-width: 1190px;">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="news-more-title">
+                    {% trans 'Related Articles' %}
+                </div>
+
+                <div class="news-more-items">
+                    {% for one_news_more in news_more %}
+                    <div class="news-more-items-item">
+                        <a href="{{ one_news_more.get_absolute_url }}">
+                            <img class="news-more-items-item-img" src="{{ one_news_more.main_image|thumbnail_url:'default' }}" loading="lazy">
+                            <div class="news-more-items-item-title">
+                                <div class="news-more-items-item-title-date">
+                                    {{ one_news_more.date_published|date:"d E Y" }}
+                                </div>
+                                {% if LANGUAGE_CODE == 'en' %}
+                                    {{ one_news_more.title }}
+                                {% elif LANGUAGE_CODE == 'ru' %}
+                                    {{ one_news_more.title_ru }}
+                                {% elif LANGUAGE_CODE == 'uk' %}
+                                    {{ one_news_more.title_uk }}
+                                {% endif %}
+                                &nbsp;<i class="fas fa-long-arrow-alt-right" style="margin-left: 3px;"></i>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'js/news.js' %}"></script>
+<script type="text/javascript">
+    $('#share-facebook-{{ one_news.id }}').click(news_share);
+    $('#share-twitter-{{ one_news.id }}').click(news_share);
+    $('#share-vk-{{ one_news.id }}').click(news_share);
+</script>
+{% endblock javascript %}

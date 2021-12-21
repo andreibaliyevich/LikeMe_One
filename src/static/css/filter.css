@@ -1,0 +1,17 @@
+
+/* filter */
+form[class="mobile col-sm-6 col-md-3 g-mb-30"], form[class="form-inline places-filter-mobile"] {
+    display: none;
+}
+
+
+@media (max-width: 767px) {
+    form[class="float-right mt-1 col-sm-6 col-md-3 g-mb-30"], form[class="form-inline places-filter"] {
+        display: none;
+    }
+
+    form[class="mobile col-sm-6 col-md-3 g-mb-30"], form[class="form-inline places-filter-mobile"] {
+        display: block;
+    }
+}
+/* filter end */

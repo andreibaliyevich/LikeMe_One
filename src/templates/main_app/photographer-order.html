@@ -1,0 +1,53 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+{% block title %}{% trans 'Photographer Order' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800">
+{% bootstrap_javascript jquery='full' %}
+{{ photographer_order_form.media }}
+{% endblock stylesheet %}
+
+
+{% block content %}
+
+<div class="mt-3 mb-5" style="max-width: 600px; margin: auto;">
+    <h1 class="text-center text-uppercase text-secondary">{% trans 'Photographer Order' %}</h1>
+
+    <form class="mx-2" action="{% url 'main_app:photographer-order' %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form photographer_order_form %}
+        <button class="btn btn-warning" type="submit">{% trans 'To order' %}</button>
+    </form>
+
+    {% if message %}
+    <div class="modal fade" id="messageModalCenter" tabindex="-1" role="dialog" aria-labelledby="messageModalCenterTitle" aria-hidden="true" data-show="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="messageModalCenterTitle">{% trans 'Photographer Order' %}</h5>
+                </div>
+                <div class="modal-body">
+                    {% trans 'Your order has been sent!' %}
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-warning" href="{% url 'main_app:index' %}">{% trans 'Close' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/message-modal-show.js' %}"></script>
+{% endblock javascript %}

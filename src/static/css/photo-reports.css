@@ -1,0 +1,55 @@
+
+.page-loader {
+    background: #fff;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    opacity: 1;
+}
+
+.page-loader-inner {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    padding: 20px;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+}
+
+.spinner {
+    position: relative;
+    height: 30px;
+    width: 30px;
+    margin: 100px auto;
+}
+
+
+@font-face {
+    font-family: 'Font Awesome 5 Pro';
+    font-style: normal;
+    font-weight: 300;
+    src: url("/static/webfonts/fa-light-300.eot");
+    src: url("/static/webfonts/fa-light-300.eot?#iefix") format("embedded-opentype"), url("/static/webfonts/fa-light-300.woff2") format("woff2"), url("/static/webfonts/fa-light-300.woff") format("woff"), url("/static/webfonts/fa-light-300.ttf") format("truetype"), url("/static/webfonts/fa-light-300.svg#fontawesome") format("svg"); }
+
+.fal {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 300; }
+
+/*!
+ * WebApp Icons
+ */
+@font-face {
+    font-family: 'nextgen-icons';
+    src: url("/static/webfonts/nextgen-icons.eot");
+    src: url("/static/webfonts/nextgen-icons.eot?#iefix") format("embedded-opentype"), url("/static/webfonts/nextgen-icons.woff2") format("woff2"), url("/static/webfonts/webfonts/nextgen-icons.woff") format("woff"), url("/static/webfonts/webfonts/nextgen-icons.ttf") format("truetype"), url("/static/webfonts/webfonts/nextgen-icons.svg#nextgen-icons") format("svg");
+    font-weight: normal;
+    font-style: normal; }
+
+
+i[data-action='photo-like']:hover {
+    cursor: pointer;
+}

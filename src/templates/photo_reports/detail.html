@@ -1,0 +1,109 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}{{ photo_report.title }}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" media="screen, print" href="{% static 'css/lightgallery-bundle.css' %}">
+<link rel="stylesheet" media="screen, print" href="{% static 'css/photo-reports.css' %}">
+<link rel="stylesheet" href="{% static 'css/entry-hgroup.css' %}">
+{% endblock stylesheet %}
+
+
+{% block nav_photoreports %}style="color: white;"{% endblock nav_photoreports %}
+
+
+{% block content %}
+
+<!-- Preloader-->
+<div class="page-loader">
+    <div class="page-loader-inner">
+        <div class="spinner">
+            <div class="spinner-grow text-warning" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- Preloader end -->
+
+<div class="mt-4 mb-5 container-fluid" style="max-width: 1190px;">
+    <div class="entry-hgroup">
+        <h1 class="text-center text-uppercase">{{ photo_report.title }}</h1>
+        <h3 class="text-center">
+            <a class="text-uppercase text-warning" href="{{ photo_report.place.get_absolute_url }}">{{ photo_report.place }}</a>
+        </h3>
+        <h4 class="text-center text-muted">
+            <i class='fas fa-eye'></i><span id="views-count">{{ photo_report.num_views }}</span> / 
+            <i class='far fa-thumbs-up'></i><span id="likes-count">{{ likes_count }}</span>
+        </h4>
+    </div>
+
+    {% if user_is_photographer %}
+    <div class="text-center">
+        <a href="{% url 'photographer_dashboard:edit-photo-report' photo_report.id %}">
+            <button type="button" class="btn btn-warning">{% trans 'Edit Photoreport' %}</button>
+        </a>
+        <a href="{% url 'photographer_dashboard:delete-photo-report' photo_report.id %}">
+            <button type="button" class="btn btn-dark">{% trans 'Delete Photoreport' %}</button>
+        </a>
+        <p>{% trans 'Photographer' %}: {% if photo_report.author.get_full_name %}{{ photo_report.author.get_full_name }}{% else %}{{ photo_report.author.get_username }}{% endif %}</p>
+    </div>
+    {% endif %}
+
+    <p>{{ photo_report.date }}</p>
+
+    <div id="js-lightgallery" data-id="{{ photo_report.id }}">
+        {% for photo in photo_tuples %}
+        <a id="{{ photo.0.id }}" class="photo-like" href="{{ photo.0.image.url }}" data-sub-html="
+            {% if user.is_authenticated %}
+                {% if photo.2 %}
+                    <i id='fa-thumbs-up-{{ photo.0.id }}' class='fas fa-thumbs-up text-warning' style='font-size:24px' data-action='photo-like' data-id='{{ photo.0.id }}'></i>
+                {% else %}
+                    <i id='fa-thumbs-up-{{ photo.0.id }}' class='far fa-thumbs-up' style='font-size:24px' data-action='photo-like' data-id='{{ photo.0.id }}'></i>
+                {% endif %}
+            {% else %}
+                <a href='{% url 'main_app:login' %}?next={{ request.get_full_path }}' class='text-white'>
+                    <i class='far fa-thumbs-up' style='font-size:24px'></i>
+                </a>
+            {% endif %}
+            <span class='likes-count-{{ photo.0.id }}' style='font-size:24px'>{{ photo.1 }}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style='font-size:18px'>
+                <i class='fas fa-share-alt' style='font-size:24px'></i>
+                &nbsp;
+                <a href='https://www.facebook.com/sharer/sharer.php?u={{ site_url_address }}{{ photo.0.image.url }}' target='_blank' rel='nofollow' id='share-facebook-{{ photo.0.id }}'><i class='fab fa-facebook-f' style='color:#3b5999; font-size:24px;'></i></a>
+                &nbsp;
+                <a href='https://twitter.com/intent/tweet?url={{ site_url_address }}{{ photo.0.image.url }}' target='_blank' rel='nofollow' id='share-twitter-{{ photo.0.id }}'><i class='fab fa-twitter' style='color:#55acee; font-size:24px;'></i></a>
+                &nbsp;
+                <a href='https://vk.com/share.php?url={{ site_url_address }}{{ photo.0.image.url }}' target='_blank' rel='nofollow' id='share-vk-{{ photo.0.id }}'><i class='fab fa-vk' style='color:#4c75a3; font-size:24px;'></i></a>
+            </span>
+            <script type='text/javascript'>
+                $('#fa-thumbs-up-{{ photo.0.id }}').click(photo_like);
+                $('#share-facebook-{{ photo.0.id }}').click(photo_share);
+                $('#share-twitter-{{ photo.0.id }}').click(photo_share);
+                $('#share-vk-{{ photo.0.id }}').click(photo_share);
+            </script>">
+            <img class="img-responsive" src="{{ photo.0.thumbnail.url }}" alt="<i class='far fa-thumbs-up'></i> <span class='likes-count-{{ photo.0.id }}'>{{ photo.1 }}</span>">
+        </a>
+        {% endfor %}
+    </div>
+
+    <div class="text-center">
+        <a href="{% url 'photo_reports:download-archive' photo_report.id %}">
+            <button type="button" class="btn btn-warning">{% trans 'Download' %} .zip</button>
+        </a>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/lightgallery-bundle.js' %}"></script>
+<script src="{% static 'js/photo-reports.js' %}"></script>
+{% endblock javascript %}

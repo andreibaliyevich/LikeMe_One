@@ -1,0 +1,270 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block title %}{% trans 'Home' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-slick.css' %}">
+{% endblock stylesheet %}
+
+
+{% block nav_home %}style="color: white;"{% endblock nav_home %}
+
+
+{% block content %}
+
+<div class="js-carousel g-bg-gray-dark-v1" data-infinite="true" data-autoplay="true" data-speed="7000" data-center-mode="true" data-center-padding="200px" data-slides-show="3" data-arrows-classes="u-arrow-v1 g-absolute-centered--y g-width-45 g-height-45 g-font-size-20 g-brd-style-solid g-brd-2 g-color-white g-bg-black-opacity-0_5--hover g-transition-0_3 rounded-circle" data-arrow-left-classes="fa fa-angle-left g-left-20" data-arrow-right-classes="fa fa-angle-right g-right-20" data-responsive='[{
+    "breakpoint": 1200,
+    "settings": {
+        "slidesToShow": 3,
+        "centerPadding": "30px"
+    }}, {
+    "breakpoint": 992,
+    "settings": {
+        "slidesToShow": 2,
+        "centerPadding": "60px"
+    }}, {
+    "breakpoint": 650,
+    "settings": {
+        "slidesToShow": 1,
+        "centerPadding": "40px"
+    }}]'>
+{% for announcement in announcements %}
+    <div class="js-slide g-py-10 g-px-5">
+    <article class="u-block-hover">
+        <figure class="g-bg-cover g-bg-white-gradient-opacity-v1--after">
+            <img class="img-fluid w-100 height-100" src="{{ announcement.image.url }}" loading="lazy">
+        </figure>
+
+        <div class="g-pos-abs g-bottom-0 g-left-10 g-right-10">
+            <div class="hsec1-slider-slide-body">
+                <div class="hsec1-slider-slide-body-date">
+                    <div class="hsec1-slider-slide-body-date-img">
+                        <img src="" alt="">
+                    </div>
+                    <div class="hsec1-slider-slide-body-date-val">{{ announcement.date_time|date:"d F" }}</div>
+                </div>
+                <div class="hsec1-slider-slide-body-name">{{ announcement.place }}</div>
+            </div>
+        </div>
+    </article>
+    </div>
+{% endfor %}
+</div>
+
+<main>
+    <section class="sec1">
+        <div class="container-fluid" style="max-width: 1190px;">
+            <div class="row">
+                <div class="col-md-12">
+                    {% for banner in banners %}
+                        {% if banner.type_banner == '#1' %}
+                    <div class="sec1-secret">
+                        <a href="{{ banner.url_address }}" target="_blank">
+                            <img src="{{ banner.image.url }}" loading="lazy">
+                        </a>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="sec1-items">
+                        {% for one_news in news %}
+                        <div class="sec1-items-item">
+                            <div class="sec1-items-item-img">
+                                <a href="{{ one_news.get_absolute_url }}">
+                                    <img src="{{ one_news.main_image|thumbnail_url:'default' }}" loading="lazy">
+                                </a>
+                            </div>
+                            <div class="sec1-items-item-text">
+                                <div class="sec1-items-item-text-t1">
+                                    <a href="{% url 'news:news-list-by-author' one_news.author.id %}">
+                                        {% if one_news.author.first_name %}{{ one_news.author.first_name }} {{ one_news.author.last_name }}{% else %} {{ one_news.author.username }}{% endif %}
+                                    </a>
+                                </div>
+                                <div class="sec1-items-item-text-t2 text-truncate">
+                                    <a href="{{ one_news.get_absolute_url }}" class="sec1-items-item-text-t2 text-truncate">
+                                        {% if LANGUAGE_CODE == 'en' %}
+                                            {{ one_news.title }}
+                                        {% elif LANGUAGE_CODE == 'ru' %}
+                                            {{ one_news.title_ru }}
+                                        {% elif LANGUAGE_CODE == 'uk' %}
+                                            {{ one_news.title_uk }}
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div class="sec1-items-item-text-t3">
+                                    {% if LANGUAGE_CODE == 'en' %}
+                                        {{ one_news.content|striptags|truncatechars:'70' }}
+                                    {% elif LANGUAGE_CODE == 'ru' %}
+                                        {{ one_news.content_ru|striptags|truncatechars:'70' }}
+                                    {% elif LANGUAGE_CODE == 'uk' %}
+                                        {{ one_news.content_uk|striptags|truncatechars:'70' }}
+                                    {% endif %}
+                                </div>
+                                <div class="sec1-items-item-text-t4">
+                                    <a href="{{ one_news.get_absolute_url }}" class="sec1-items-item-text-t4-a">
+                                        {% trans 'Read more' %} <i class="fas fa-arrow-right" style="margin-left: 6px;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        {% for banner in banners %}
+                            {% if banner.type_banner == '#2' %}
+                        <div class="sec1-items-item">
+                            <div class="sec1-items-item-secret">
+                                <a href="{{ banner.url_address }}" target="_blank">
+                                    <img src="{{ banner.image.url }}" loading="lazy">
+                                </a>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    {% for banner in banners %}
+                        {% if banner.type_banner == '#3' %}
+                    <div class="sec1-secret">
+                        <a href="{{ banner.url_address }}" target="_blank">
+                            <img src="{{ banner.image.url }}" loading="lazy">
+                        </a>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec2">
+        <div class="container-fluid" style="max-width: 1190px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="sec2-title _titleh">
+                        {% trans 'Recommended to visit' %} <span class="sec1-items-item-text-t3">{% trans 'Places of the week' %}&nbsp;<i class="far fa-thumbs-up" style="margin-left: 3px;"></i></span>
+                    </div>
+
+                    <div class="sec2-items">
+                        {% for place in places %}
+                        <div class="sec2-items-item">
+                            <a href="{{ place.get_absolute_url }}">
+                                <img class="sec2-items-item-bg" src="{{ place.image_place|thumbnail_url:'default' }}" loading="lazy">
+                                <div class="sec2-items-item-t1">
+                                    {% if place.bar %}{% trans 'Bar' %}&nbsp;{% endif %}
+                                    {% if place.bowling %}{% trans 'Bowling' %}&nbsp;{% endif %}
+                                    {% if place.brewery %}{% trans 'Brewery' %}&nbsp;{% endif %}
+                                    {% if place.hookah %}{% trans 'Hookah' %}&nbsp;{% endif %}
+                                    {% if place.karaoke %}{% trans 'Karaoke' %}&nbsp;{% endif %}
+                                    {% if place.coffee_house %}{% trans 'Coffee House' %}{% endif %}
+                                    {% if place.night_club %}{% trans 'Night Club' %}&nbsp;{% endif %}
+                                    {% if place.veranda %}{% trans 'Veranda' %}&nbsp;{% endif %}
+                                    {% if place.restaurant %}{% trans 'Restaurant' %}&nbsp;{% endif %}
+                                    {% if place.strip_club %}{% trans 'Strip Club' %}&nbsp;{% endif %}
+                                    {% if place.educational_project %}{% trans 'Educational Project' %}&nbsp;{% endif %}
+                                    {% if place.entertainment %}{% trans 'Entertainment (various events)' %}&nbsp;{% endif %}
+                                    {% if place.health %}{% trans 'Health (or fitness)' %}&nbsp;{% endif %}
+                                    {% if place.store %}{% trans 'Store' %}{% endif %}
+                                </div>
+                                <div class="sec2-items-item-t2">                                    
+									{{ place.name }}
+                                </div>
+                            </a>    
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    {% for banner in banners %}
+                        {% if banner.type_banner == '#4' %}
+                    <div class="sec1-secret">
+                        <a href="{{ banner.url_address }}" target="_blank">
+                            <img src="{{ banner.image.url }}" loading="lazy">
+                        </a>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec3">
+        <div class="container-fluid" style="max-width: 1190px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="sec3-title _titleh">
+                        {% trans 'Reports of the week' %} <a href="{% url 'photo_reports:photo-reports-list' %}" class="sec1-items-item-text-t3-a">{% trans 'View all' %}&nbsp;<i class="fas fa-long-arrow-alt-right" style="margin-left: 3px;"></i></a>
+                    </div>
+
+                    <div class="sec3-items">
+                        {% for photo_report in photo_reports_tuples %}
+                        <div class="sec3-items-item">
+                            <a href="{{ photo_report.0.get_absolute_url }}" class="sec3-items-item-a">
+                                <img class="sec3-items-item-bg" src="{{ photo_report.0.main_image.url }}" loading="lazy">
+                                <div class="sec3-items-item-date dark">
+                                    <div class="sec3-items-item-date-val">
+                                        {{ photo_report.0.date|date:"d" }}
+                                    </div>
+                                    {{ photo_report.0.date|date:"b" }}
+                                </div>
+                                <div class="sec3-items-item-t1">
+                                    {{ photo_report.0.title }}
+                                </div>
+                                <div class="sec3-items-item-t2">
+                                    {{ photo_report.0.place }}
+                                </div>
+                                <div class="sec3-items-item-v">
+                                    {% if photo_report.0.is_plus_18 %}+18{% endif %}
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <i class="fas fa-eye sec3-items-item-v-img" ></i>
+                                    {{ photo_report.0.num_views }}
+                                </div>
+                                <div class="sec3-items-item-l">
+                                    <i class="fas fa-thumbs-up sec3-items-item-l-img"></i>
+                                    {{ photo_report.1 }}
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+
+                        {% for banner in banners %}
+                            {% if banner.type_banner == '#5' %}
+                        <div class="sec3-items-item">
+                            <div class="sec3-items-item-secret">
+                                <a href="{{ banner.url_address }}" target="_blank">
+                                    <img src="{{ banner.image.url }}" loading="lazy">
+                                </a>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <center>{% trans 'More reporting You can' %} <a href="{% url 'photo_reports:photo-reports-list' %}" class="sec1-items-item-text-t3-a"><u><b>{% trans 'look here' %}</b></u></a></center>
+        <br>
+    </section>
+</main>
+
+{% endblock content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/jquery-migrate.min.js' %}"></script>
+<script src="{% static 'js/unify-core.js' %}"></script>
+<script src="{% static 'js/unify-carousel.js' %}"></script>
+<script type="text/javascript">
+    $(document).on('ready', function () {
+        $.HSCore.components.HSCarousel.init('.js-carousel');
+    });
+</script>
+{% endblock javascript %}

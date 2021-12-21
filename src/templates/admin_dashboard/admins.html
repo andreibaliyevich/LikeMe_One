@@ -1,0 +1,45 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}{% trans 'Admins' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+{% endblock stylesheet %}
+
+
+{% block admins_active %} active{% endblock admins_active %}
+
+
+{% block admin_dashboard_content %}
+
+<br>
+
+<div>
+{% for admin in admins %}
+    <p>{% if admin.get_full_name %}{{ admin.get_full_name }}{% else %}{{ admin.username }}{% endif %} <a href="{% url 'admin_dashboard:del-admin' admin.id %}">{% trans 'delete' %}</a></p>
+{% endfor %}
+</div>
+
+<!-- Search -->
+<form class="form-inline" action="{% url 'admin_dashboard:admins-search' %}">
+    <div class="input-group">
+        <input class="form-control" type="text" placeholder="{% trans 'SEARCH' %}" aria-label="search" name="search" value="{{ request.GET.search }}">
+    </div>
+</form>
+
+<div>
+    {% if users_found %}
+        {% for user in users_found %}
+            <p>{% if user.get_full_name %}{{ user.get_full_name }}{% else %}{{ user.username }}{% endif %} <a href="{% url 'admin_dashboard:add-admin' user.id %}">{% trans 'add' %}</a></p>
+        {% endfor %}
+    {% endif %}
+</div>
+<!-- Search end -->
+
+{% endblock admin_dashboard_content %}

@@ -1,0 +1,59 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}{% trans 'Banners' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+{% endblock stylesheet %}
+
+
+{% block banners_active %} active{% endblock banners_active %}
+
+
+{% block admin_dashboard_content %}
+
+<br>
+
+<a href="{% url 'admin_dashboard:add-banner' %}">
+    <button type="button" class="btn btn-warning">{% trans 'Add Banner' %}</button>
+</a>
+
+<br>
+<br>
+
+{% for banner in banners %}
+<!-- Article -->
+<article class="d-md-table w-100 g-bg-white g-mb-1">
+    <!-- Article Image -->
+    <a class="d-md-table-cell align-middle g-width-130" href="#">
+        <img class="d-block info-v5-2__image g-ml-minus-1" src="{{ banner.image.url }}" loading="lazy">
+    </a>
+    <!-- End Article Image -->
+
+    <!-- Article Content -->
+    <div class="d-md-table-cell align-middle g-py-15 g-px-20">
+        <h3 class="h6 g-font-weight-700 text-uppercase">{{ banner.title }}</h3>
+        <em class="g-color-gray-dark-v5 g-font-style-normal">{{ banner.type_banner }}</em>
+    </div>
+    <!-- End Article Content -->
+
+    <!-- Actions -->
+    <div class="d-md-table-cell align-middle text-md-right g-pa-20">
+        <div class="g-mt-minus-10 g-mx-minus-5">
+            <a class="btn btn-lg u-btn-primary g-font-size-12 g-mx-5 g-mt-10" href="{% url 'admin_dashboard:edit-banner' banner.id %}"><i class='fas fa-edit'></i></a>
+            <a class="btn btn-lg u-btn-outline-black g-font-size-12 g-mx-5 g-mt-10" href="{% url 'admin_dashboard:delete-banner' banner.id %}"><i class='fas fa-trash'></i></a>
+        </div>
+    </div>
+    <!-- End Actions -->
+</article>
+<!-- End Article -->
+{% endfor %}
+
+{% endblock admin_dashboard_content %}

@@ -1,0 +1,39 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+
+
+{% block title %}{% trans 'Terms of Use' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800">
+{% endblock stylesheet %}
+
+
+{% block content %}
+
+<div class="mt-4 mb-5 container-fluid" style="max-width: 1190px;">
+    <h1 class="text-center text-uppercase text-secondary">{% trans 'Terms of Use' %}</h1>
+<p><b>{% trans 'Website Terms of Service Agreement' %}</b></p>
+<p>
+{% trans 'The following conditions explain how you can use the LikeMe website. Please read these terms carefully. By using this site, you agree to follow all provisions. If you do not agree with one or more of these provisions or consider them unacceptable, please do not visit the site and do not use it.' %}</p>
+
+<p><b>{% trans 'Personal Data Processing Agreement' %}</b></p>
+
+<p>
+{% trans 'This agreement on the processing of personal data is developed in accordance with the legislation of Ukraine.' %}<br/>
+{% trans 'All persons who fill out the information constituting personal data on this website, as well as posting other information with the indicated actions, confirm their consent to the processing of personal data and their transfer to the operator of the processing of personal data.' %}<br/>
+{% trans 'The personal data of a Citizen means the following information:' %}<br/>
+• {% trans 'General information (email address, phone number and place of residence)' %}<br/>
+• {% trans 'Personal Data Processing Agreement' %}<br/>
+• {% trans 'Transfer of personal data to the operator for their processing' %}<br/>
+{% trans 'The citizen, accepting this Agreement, expresses their interest and full agreement that the processing of their personal data may include the following actions: collection, systematization, accumulation, storage, clarification (updating, changing), use, destruction.' %}<br/>
+{% trans 'A citizen guarantees: the information provided to them is complete, accurate and reliable; when providing information, the current legislation of Ukraine, the legitimate rights and interests of third parties are not violated; All information provided is filled by the Citizen in relation to himself personally.' %}</p>
+
+<p>
+{% trans 'Website' %} <a href="{% url 'main_app:index' %}" class="text-warning">LikeMe.one</a> {% trans 'is a purely informational and non-profit organization.' %}
+</p>
+</div>
+
+{% endblock content %}

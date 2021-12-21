@@ -1,0 +1,65 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}{{ video_report.title }}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/entry-hgroup.css' %}">
+<link rel="stylesheet" href="{% static 'css/video-reports.css' %}">
+{% endblock stylesheet %}
+
+
+{% block nav_videoreports %}style="color: white;"{% endblock nav_videoreports %}
+
+
+{% block content %}
+
+<div class="mt-4 mb-5 container-fluid" style="max-width: 1190px;">
+    <div class="entry-hgroup">
+        <h1 class="text-center text-uppercase">{{ video_report.title }}</h1>
+        <h3 class="text-center"><a class="text-uppercase text-warning" href="{{ video_report.place.get_absolute_url }}">{{ video_report.place }}</a></h3>
+        <h4 class="text-center text-muted">
+            <i class='fas fa-eye'></i> {{ video_report.num_views }} / 
+            {% if user.is_authenticated %}
+                {% if user_is_liked %}
+                    <i id="fa-thumbs-up" class="fas fa-thumbs-up text-warning" data-action="video-report-like" data-id="{{ video_report.id }}"></i>
+                {% else %}
+                    <i id="fa-thumbs-up" class="far fa-thumbs-up text-muted" data-action="video-report-like" data-id="{{ video_report.id }}"></i>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'main_app:login' %}" class="text-muted">
+                    <i class="far fa-thumbs-up"></i>
+                </a>
+            {% endif %}
+            <span id="likes-count">{{ likes_count }}</span>
+        </h4>
+    </div>
+
+    {% if user_is_photographer %}
+    <div class="text-center">
+        <a href="{% url 'photographer_dashboard:edit-video-report' video_report.id %}">
+            <button type="button" class="btn btn-warning">{% trans 'Edit Video Reports' %}</button>
+        </a>
+        <a href="{% url 'photographer_dashboard:delete-video-report' video_report.id %}">
+            <button type="button" class="btn btn-dark">{% trans 'Delete Video Reports' %}</button>
+        </a>
+        <p>{% trans 'Photographer' %}: {% if video_report.author.get_full_name %}{{ video_report.author.get_full_name }}{% else %}{{ video_report.author.get_username }}{% endif %}</p>
+    </div>
+    {% endif %}
+
+    <p>{{ video_report.date }}</p>
+    <div class="embed-responsive embed-responsive-21by9" style="max-width: 1190px">
+        <iframe class="embed-responsive-item" src="{{ video_report.url_address }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/video-reports.js' %}"></script>
+{% endblock javascript %}

@@ -1,0 +1,60 @@
+/*------------------------------------
+    Default Styles
+------------------------------------*/
+a {
+    color: #f29836;
+    outline: none;
+}
+
+a:focus,
+a:hover {
+    color: #f29836;
+}
+
+figure {
+    margin-bottom: 0;
+}
+
+/*------------------------------------
+    Headings
+------------------------------------*/
+.h1, .h2, .h3, .h4, .h5, .h6, .h7,
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.4;
+}
+
+.h7 {
+    font-size: .75rem;
+}
+
+/*------------------------------------
+    Displays
+------------------------------------*/
+.display-5 {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.1;
+}
+
+/*------------------------------------
+    Highlight Color
+------------------------------------*/
+::-moz-selection {
+    color: #fff;
+    background-color: #f29836;
+}
+
+::selection {
+    color: #fff;
+    background-color: #f29836;
+}
+
+.g-bg-primary ::-moz-selection {
+    color: #f29836;
+    background-color: #fff;
+}
+
+.g-bg-primary ::selection {
+    color: #f29836;
+    background-color: #fff;
+}

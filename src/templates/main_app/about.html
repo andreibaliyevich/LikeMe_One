@@ -1,0 +1,27 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+
+
+{% block title %}{% trans 'About LikeMe' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800">
+{% endblock stylesheet %}
+
+
+{% block content %}
+<div class="mt-4 mb-5 container-fluid" style="max-width: 1190px;">
+    <h1 class="text-center text-uppercase text-secondary">{% trans 'About LikeMe' %}</h1>
+<p>
+<a href="{% url 'main_app:index' %}" class="text-warning">LikeMe.One</a> – {% trans 'A portal covering restaurant and club life in Ukraine, as well as countries of Western Europe. News, interviews, announcements of events, a directory of institutions. Reviews, photos and video reports.' %}</p>
+<p>
+{% trans 'A portal' %} <b>LikeBB.com</b> {% trans 'was founded in 2014 and came to rebranding at the end of 2019, receiving a new name' %} <b>LikeMe.One</b>. {% trans 'Our portal is an example of one of the most successful, modern projects in the club and restaurant industry. The monthly audience of our portal is more than 50 thousand people. The main idea of the project is the combination of restaurant and club culture in all its manifestations. LikeMe.One strives to maximize itself and provide unique content to our customers.' %}<br/>
+{% trans 'Today, we are closely engaged in the development of our project and strive to develop a regional network throughout Ukraine, as well as beyond its aisles.' %}<br/>
+{% trans 'Our team consists of first-class professionals who know their job and do truly incredible things. We create and promote only the best. Our services are not limited only to club and restaurant photography, we also work in the field of interior and food filming, wedding and exclusive.' %}<br/>
+<a href="{% url 'main_app:index' %}" class="text-warning">LikeMe.One</a> – {% trans 'is something completely new, but everything is new only in the future. Stay with us and you will not regret your choice!' %}
+</p>
+</div>
+
+{% endblock content %}

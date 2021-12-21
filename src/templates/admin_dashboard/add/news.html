@@ -1,0 +1,37 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+{% block title %}{% trans 'Add News' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+
+<!-- TinyMCE 4 -->
+{{ news_form.media }}
+{% endblock stylesheet %}
+
+
+{% block news_active %} active{% endblock news_active %}
+
+
+{% block admin_dashboard_content %}
+
+<br>
+
+{% if message %}
+    <p>{% trans 'Error!' %}</p>
+{% endif %}
+
+<form action="{% url 'admin_dashboard:add-news' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form news_form %}
+    <button class="btn btn-warning" type="submit">{% trans 'Add News' %}</button>
+</form>
+
+{% endblock admin_dashboard_content %}

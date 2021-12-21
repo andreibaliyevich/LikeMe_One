@@ -1,0 +1,55 @@
+
+/* detail */
+img.entry-main-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
+div.entry-content {
+    font-family: 'Gothic A1', sans-serif;
+    text-align: justify;
+}
+
+div.entry-content a {
+    color: #212529;
+    text-decoration: underline;
+    text-decoration-color: #f29836;
+}
+
+
+@media (max-width: 768px) {
+    div.entry-hgroup h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 411px) {
+    .overflow-url {
+        overflow-wrap: break-word;
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 375px) {
+    .overflow-url {
+        overflow-wrap: break-word;
+        max-width: 287px;
+    }
+}
+
+@media (max-width: 360px) {
+    .overflow-url {
+        overflow-wrap: break-word;
+        max-width: 269px;
+    }
+}
+
+@media (max-width: 320px) {
+    .overflow-url {
+        overflow-wrap: break-word;
+        max-width: 230px;
+    }
+}
+/* detail end */

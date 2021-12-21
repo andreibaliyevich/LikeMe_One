@@ -1,0 +1,104 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+{% block title %}{% trans 'Payments' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+{% endblock stylesheet %}
+
+
+{% block payments_active %} active{% endblock payments_active %}
+
+
+{% block admin_dashboard_content %}
+
+<br>
+
+<form action="{% url 'admin_dashboard:payments' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_field date_form.date show_label=False %}
+</form>
+
+
+<div class="g-bg-primary g-color-white g-py-10 mb-1">
+    <h3 class="g-font-weight-300 align-self-center pl-5">{% trans 'According Photoreports' %}</h3>
+</div>
+
+{% for author_photo_dict in authors_photo_dicts %}
+<div class="card rounded-0">
+    <h4 class="card-header h6 rounded-0">
+        <i class="fa fa-tasks g-font-size-default g-mr-5"></i>
+        {{ author_photo_dict.author }} | Count: {{ author_photo_dict.summary.0 }}; Invoice: {{ author_photo_dict.summary.1 }}; Tax: {{ author_photo_dict.summary.2 }}
+    </h4>
+
+    <div class="card-block">
+    {% for photo_report in author_photo_dict.reports %}
+        <p class="card-text"><a href="{{ photo_report.get_absolute_url }}">{{ photo_report.title }}</a> | {{ photo_report.pay_to_photographer }}/{{ photo_report.pay_to_portal }}</p>
+    {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+<div class="card card-outline-warning rounded-0">
+    <h4 class="card-header h6 text-white bg-warning g-brd-transparent rounded-0">
+        <i class="fa fa-tasks g-font-size-default g-mr-5"></i>
+        {% trans 'Total Photoreports' %}
+    </h4>
+
+    <div class="card-block">
+        <h5 class="h5">Count: {{ summary_photo.count }}; Invoice: {{ summary_photo.invoice }}; Tax: {{ summary_photo.tax }}</h5>
+    </div>
+</div>
+
+
+<div class="g-bg-primary g-color-white g-py-10 mt-3 mb-1">
+    <h3 class="g-font-weight-300 align-self-center pl-5">{% trans 'According Videoreports' %}</h3>
+</div>
+
+{% for author_video_dict in authors_video_dicts %}
+<div class="card rounded-0">
+    <h4 class="card-header h6 rounded-0">
+        <i class="fa fa-tasks g-font-size-default g-mr-5"></i>
+        {{ author_video_dict.author }} | Count: {{ author_video_dict.summary.0 }}; Invoice: {{ author_video_dict.summary.1 }}; Tax: {{ author_video_dict.summary.2 }}
+    </h4>
+
+    <div class="card-block">
+    {% for video_report in author_video_dict.reports %}
+        <p class="card-text"><a href="{{ video_report.get_absolute_url }}">{{ video_report.title }}</a> | {{ video_report.pay_to_photographer }}/{{ video_report.pay_to_portal }}</p>
+    {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+<div class="card card-outline-warning rounded-0">
+    <h4 class="card-header h6 text-white bg-warning g-brd-transparent rounded-0">
+        <i class="fa fa-tasks g-font-size-default g-mr-5"></i>
+        {% trans 'Total Videoreports' %}
+    </h4>
+
+    <div class="card-block">
+        <h5 class="h5">Count: {{ summary_video.count }}; Invoice: {{ summary_video.invoice }}; Tax: {{ summary_video.tax }}</h5>
+    </div>
+</div>
+
+
+<div class="card card-inverse bg-warning text-white rounded-0 mt-3">
+    <h3 class="card-header h5">
+        <i class="fa fa-tasks g-font-size-default g-mr-5"></i>
+        {% trans 'Total' %}
+    </h3>
+
+    <div class="card-block g-pa-15">
+        <h4 class="h5">Count: {{ summary.count }}; Invoice: {{ summary.invoice }}; Tax: {{ summary.tax }}</h4>
+    </div>
+</div>
+
+{% endblock admin_dashboard_content %}

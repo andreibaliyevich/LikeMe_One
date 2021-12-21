@@ -1,0 +1,99 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}{% trans 'Announcements' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-chosen.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-slick.css' %}">
+<link rel="stylesheet" href="{% static 'css/filter.css' %}">
+{% endblock stylesheet %}
+
+
+{% block nav_announcements %}style="color: white;"{% endblock nav_announcements %}
+
+
+{% block content %}
+
+{% include 'main_app/subnav.html' %}
+
+<div class="mt-4 mb-5 container-fluid" style="max-width: 1190px;">
+    <form class="float-right mt-1 col-sm-6 col-md-3 g-mb-30" action="{% url 'announcements:announcements-list' %}" method="get">
+        <select class="js-custom-select w-100 u-select-v2 g-brd-yes g-color-black g-color-primary--hover g-bg-white text-left g-rounded-30 g-pl-25 g-py-12" data-placeholder="{% trans 'Place' %}" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" name="place" onchange="form.submit();" title="" id="id_place">
+            <option></option>
+            {% for value, text in announcements_filter.place.field.choices %}
+            <option class="g-brd-secondary-light-v2 g-color-black g-color-white--active g-bg-primary--active" value="{{ value }}"{% if announcements_filter.place.data == value %} selected="selected"{% endif %}>{{ text }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <h2 class="text-center text-uppercase text-secondary mb-5">{% trans 'Announcements' %}</h2>
+
+    <form class="mobile col-sm-6 col-md-3 g-mb-30" action="{% url 'announcements:announcements-list' %}" method="get">
+        <select class="js-custom-select w-100 u-select-v2 g-brd-yes g-color-black g-color-primary--hover g-bg-white text-left g-rounded-30 g-pl-25 g-py-12" data-placeholder="{% trans 'Place' %}" data-open-icon="fa fa-angle-down" data-close-icon="fa fa-angle-up" name="place" onchange="form.submit();" title="" id="id_place">
+            <option value="">{% trans 'Place' %}</option>
+            {% for value, text in announcements_filter.place.field.choices %}
+            <option class="g-brd-secondary-light-v2 g-color-black g-color-white--active g-bg-primary--active" value="{{ value }}"{% if announcements_filter.place.data == value %} selected="selected"{% endif %}>{{ text }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+
+    <div class="row infinite-container">
+        {% for announcement in announcements_page %}
+        <!-- Blog Background Overlay Blocks -->
+        <div class="col-sm-6 col-lg-4 g-px-10 g-mb-10 infinite-item">
+        <article class="u-block-hover">
+            <div class="g-bg-cover g-bg-bluegray-gradient-opacity-v1--after">
+                <img class="img-fluid w-100 height-100 u-block-hover__main--mover-up" src="{{ announcement.image.url }}" loading="lazy">
+            </div>
+            <div class="u-block-hover__additional--partially-slide-up text-center g-z-index-1 mt-auto g-bg-black-opacity-0_5">
+                <div class="g-pa-25">
+                <span class="g-color-white g-font-size-10 text-uppercase">{{ announcement.date_time|date:"d F" }}</span>
+                <h2 class="h4 g-color-white g-font-weight-600 mb-3">
+                    <p class="g-brd-bottom g-brd-2 g-color-primary g-pb-2">{{ announcement.place }}</p>
+                </h2>
+                </div>
+            </div>
+        </article>
+        </div>
+        <!-- End Blog Background Overlay Blocks -->
+        {% endfor %}
+    </div>
+
+    <div class="text-center">
+        {% if announcements_page.has_next %}
+        <a class="infinite-more-link" href="?{% for value, text in announcements_filter.place.field.choices %}{% if announcements_filter.place.data == value %}place={{ value }}&{% endif %}{% endfor %}page={{ announcements_page.next_page_number }}">
+            <img src="{% static 'preloaders/loading.gif' %}" width="16" height="16">
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block javascript %}
+<script src="{% static 'js/unify-core.js' %}"></script>
+<script src="{% static 'js/unify-chosen.js' %}"></script>
+<script src="{% static 'js/unify-select.js' %}"></script>
+<script src="{% static 'js/jquery-waypoints.min.js' %}"></script>
+<script src="{% static 'js/infinite.min.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.HSCore.components.HSSelect.init('.js-custom-select');
+    });
+
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0]
+    });
+</script>
+{% endblock javascript %}

@@ -1,0 +1,34 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% load i18n %}
+{% load bootstrap4 %}
+{% load static %}
+
+
+{% block title %}{% trans 'Edit Banner' %}{% endblock title %}
+
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+<link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+{% endblock stylesheet %}
+
+
+{% block banners_active %} active{% endblock banners_active %}
+
+
+{% block admin_dashboard_content %}
+
+<br>
+
+{% if message %}
+    <p>{% trans 'Error! A banner with this type already exists in this region!' %}</p>
+{% endif %}
+
+<form action="{% url 'admin_dashboard:edit-banner' banner_id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form banner_form %}
+    <button class="btn btn-warning" type="submit">{% trans 'Edit Banner' %}</button>
+</form>
+
+{% endblock admin_dashboard_content %}

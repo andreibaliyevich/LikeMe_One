@@ -1,0 +1,1344 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-12-11 15:04+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: admin_dashboard/forms.py:91 places/models.py:62
+msgid "Image Place"
+msgstr "Фото заведения"
+
+#: admin_dashboard/forms.py:92 photographer_dashboard/forms.py:80
+msgid "The minimum image size should be 477x373!"
+msgstr "Минимальные размеры изображения должны быть 477x373!"
+
+#: admin_dashboard/forms.py:99 admin_dashboard/forms.py:108
+#: admin_dashboard/forms.py:257 photographer_dashboard/forms.py:67
+#: photographer_dashboard/forms.py:85
+msgid "This file format is not supported."
+msgstr "Этот формат файла не поддерживает"
+
+#: admin_dashboard/forms.py:102 places/models.py:66
+msgid "Image Watermark"
+msgstr "Водяной знак"
+
+#: admin_dashboard/forms.py:103
+msgid "Uploading image must be in png format!"
+msgstr "Загружаемое изображение должно быть в формате png!"
+
+#: admin_dashboard/forms.py:112
+msgid "O'clock"
+msgstr "По часам"
+
+#: admin_dashboard/forms.py:113
+msgid "24/7"
+msgstr "Круглосуточно"
+
+#: admin_dashboard/forms.py:116 places/models.py:99
+#: templates/places/detail.html:87
+msgid "Working Hours"
+msgstr "Время работы"
+
+#: admin_dashboard/forms.py:123
+msgid "from"
+msgstr "с"
+
+#: admin_dashboard/forms.py:127
+msgid "to"
+msgstr "до"
+
+#: admin_dashboard/forms.py:131 templates/places/detail.html:98
+#: templates/places/detail.html:106 templates/places/detail.html:114
+#: templates/places/detail.html:122 templates/places/detail.html:130
+msgid "Yes"
+msgstr "Да"
+
+#: admin_dashboard/forms.py:131 templates/places/detail.html:100
+#: templates/places/detail.html:108 templates/places/detail.html:116
+#: templates/places/detail.html:124 templates/places/detail.html:132
+msgid "No"
+msgstr "Нет"
+
+#: admin_dashboard/forms.py:134 places/models.py:111
+#: templates/places/detail.html:96
+msgid "Bank Card"
+msgstr "Банковская карта"
+
+#: admin_dashboard/forms.py:144 places/models.py:113
+#: templates/places/detail.html:120
+msgid "Parking"
+msgstr "Парковка"
+
+#: admin_dashboard/forms.py:149 places/models.py:114
+#: templates/places/detail.html:128
+msgid "Delivery"
+msgstr "Доставка"
+
+#: admin_dashboard/forms.py:154 places/models.py:115
+#: templates/places/detail.html:104
+msgid "Catering"
+msgstr "Кейтеринг"
+
+#: admin_dashboard/forms.py:160
+msgid "Not chosen"
+msgstr "Не выбрано"
+
+#: admin_dashboard/forms.py:161
+msgid "Add"
+msgstr "Добавить"
+
+#: admin_dashboard/forms.py:162
+msgid "Exclude"
+msgstr "Исключить"
+
+#: admin_dashboard/forms.py:165 places/models.py:156
+msgid "Place Day"
+msgstr "Заведение дня"
+
+#: admin_dashboard/forms.py:249 news/models.py:45 photo_reports/models.py:69
+msgid "Main Image"
+msgstr "Основное изображение"
+
+#: admin_dashboard/forms.py:250
+msgid "The minimum image size should be 471x319!"
+msgstr "Минимальные размеры изображения должны быть 471x319!"
+
+#: admin_dashboard/validators.py:15
+msgid "Error! Size of your image:"
+msgstr "Ошибка! Размер вашего изображения:"
+
+#: admin_dashboard/views.py:688
+msgid "Form not valid!"
+msgstr "Форма недействительна!"
+
+#: announcements/forms.py:11 announcements/models.py:24
+#: photo_reports/forms.py:11 photo_reports/models.py:38 places/models.py:161
+#: templates/announcements/list.html:30 templates/announcements/list.html:41
+#: templates/announcements/list.html:42 templates/photo_reports/list.html:30
+#: templates/photo_reports/list.html:41 templates/photo_reports/list.html:42
+#: templates/video_reports/list.html:31 templates/video_reports/list.html:42
+#: templates/video_reports/list.html:43 video_reports/forms.py:11
+#: video_reports/models.py:31
+msgid "Place"
+msgstr "Заведениe"
+
+#: announcements/models.py:18 main_app/models.py:29 main_app/models.py:50
+#: main_app/models.py:72 main_app/models.py:110 news/models.py:24
+#: photo_reports/models.py:31 places/models.py:15 places/models.py:37
+#: video_reports/models.py:25
+msgid "Region"
+msgstr "Регион"
+
+#: announcements/models.py:28 main_app/models.py:77 photo_reports/models.py:46
+#: video_reports/models.py:38
+msgid "Title"
+msgstr "Название"
+
+#: announcements/models.py:37 main_app/models.py:89 news/models.py:75
+#: news/models.py:79 photo_reports/models.py:98
+#: photographer_dashboard/forms.py:62 photographer_dashboard/forms.py:79
+#: video_reports/models.py:53
+msgid "Image"
+msgstr "Изображение"
+
+#: announcements/models.py:40
+msgid "Date/Time"
+msgstr "Дата/время"
+
+#: announcements/models.py:43
+msgid "Announcement"
+msgstr "Объявление"
+
+#: announcements/models.py:44 templates/admin_dashboard/announcements.html:7
+#: templates/admin_dashboard/base.html:26 templates/announcements/list.html:7
+#: templates/announcements/list.html:38 templates/main_app/base.html:82
+msgid "Announcements"
+msgstr "Анонсы"
+
+#: main_app/models.py:26 news/models.py:42 photo_reports/models.py:51
+#: places/models.py:45 video_reports/models.py:42
+msgid "Slug"
+msgstr "Слаг"
+
+#: main_app/models.py:30
+msgid "Regions"
+msgstr "Регионы"
+
+#: main_app/models.py:44 photo_reports/models.py:127 video_reports/models.py:81
+msgid "User"
+msgstr "Пользователь"
+
+#: main_app/models.py:52
+msgid "Is Admin"
+msgstr "Админ"
+
+#: main_app/models.py:53
+msgid "Is Photographer"
+msgstr "Фотограф"
+
+#: main_app/models.py:56
+msgid "User Access"
+msgstr "Доступ пользователя"
+
+#: main_app/models.py:57
+msgid "Users Access"
+msgstr "Доступы пользователей"
+
+#: main_app/models.py:87
+msgid "Type Banner"
+msgstr "Тип банера"
+
+#: main_app/models.py:90 places/models.py:58 video_reports/models.py:55
+msgid "URL Address"
+msgstr "URL адрес"
+
+#: main_app/models.py:91 main_app/models.py:115 photo_reports/models.py:41
+#: video_reports/models.py:34
+msgid "Date"
+msgstr "Дата"
+
+#: main_app/models.py:94
+msgid "Banner"
+msgstr "Банер"
+
+#: main_app/models.py:95 templates/admin_dashboard/banners.html:7
+#: templates/admin_dashboard/base.html:23
+msgid "Banners"
+msgstr "Банеры"
+
+#: main_app/models.py:114 places/models.py:41
+#: templates/admin_dashboard/photographer-orders.html:28
+msgid "Name"
+msgstr "Имя"
+
+#: main_app/models.py:116 places/models.py:50
+#: templates/admin_dashboard/photographer-orders.html:30
+#: templates/places/detail.html:68
+msgid "Address"
+msgstr "Адрес"
+
+#: main_app/models.py:118 places/models.py:52
+#: templates/admin_dashboard/photographer-orders.html:31
+#: templates/places/detail.html:77
+msgid "Phone Number"
+msgstr "Телефон"
+
+#: main_app/models.py:119
+msgid "Viewed"
+msgstr "Просмотрено"
+
+#: main_app/models.py:122 templates/main_app/photographer-order.html:8
+#: templates/main_app/photographer-order.html:21
+#: templates/main_app/photographer-order.html:34
+msgid "Photographer Order"
+msgstr "Заказ фотографа"
+
+#: main_app/models.py:123 templates/admin_dashboard/photographer-orders.html:7
+#: templates/main_app/base.html:104 templates/main_app/base.html:167
+msgid "Photographer Orders"
+msgstr "Заказы фотографов"
+
+#: news/models.py:17 photo_reports/models.py:19 video_reports/models.py:18
+msgid "Author"
+msgstr "Автор"
+
+#: news/models.py:48
+msgid "Date Published"
+msgstr "Дата публикации"
+
+#: news/models.py:54
+msgid "Tags"
+msgstr "Тэги"
+
+#: news/models.py:55 photo_reports/models.py:72 video_reports/models.py:56
+msgid "Num Views"
+msgstr "Просмотры"
+
+#: news/models.py:58
+msgid "One News"
+msgstr "Новость"
+
+#: news/models.py:59 templates/admin_dashboard/base.html:32
+#: templates/admin_dashboard/news.html:8 templates/main_app/base.html:94
+#: templates/news/list.html:8
+msgid "News"
+msgstr "Чтиво"
+
+#: news/models.py:76
+msgid "Owner"
+msgstr "Владелец"
+
+#: news/models.py:80
+msgid "Images"
+msgstr "Изображения"
+
+#: photo_reports/models.py:23
+msgid "Authors"
+msgstr "Авторы"
+
+#: photo_reports/models.py:55 video_reports/models.py:46
+msgid "Pay to Photographer"
+msgstr "Оплата фотографу от заведения"
+
+#: photo_reports/models.py:59 video_reports/models.py:50
+msgid "Pay to Portal"
+msgstr "Сбор фотографа порталу"
+
+#: photo_reports/models.py:71
+msgid "Is Posted"
+msgstr "Опубликовано"
+
+#: photo_reports/models.py:75
+msgid "Photoreport"
+msgstr "Фоторепортаж"
+
+#: photo_reports/models.py:76 templates/main_app/base.html:85
+#: templates/photo_reports/list.html:7 templates/photo_reports/list.html:38
+#: templates/photographer_dashboard/base.html:14
+#: templates/photographer_dashboard/photo_reports.html:7
+msgid "Photoreports"
+msgstr "Фоторепортажи"
+
+#: photo_reports/models.py:108
+msgid "Thumbnail"
+msgstr "Миниатюра"
+
+#: photo_reports/models.py:109
+msgid "Is Available"
+msgstr "Доступно"
+
+#: photo_reports/models.py:110
+msgid "Is Cover"
+msgstr "Обложка"
+
+#: photo_reports/models.py:113 photo_reports/models.py:133
+msgid "Photo"
+msgstr "Фотография"
+
+#: photo_reports/models.py:114
+msgid "Photos"
+msgstr "Фотографии"
+
+#: photo_reports/models.py:134 video_reports/models.py:88
+msgid "Is like"
+msgstr "Лайк"
+
+#: photo_reports/models.py:137
+msgid "Photo Like"
+msgstr "Лайк фотографии"
+
+#: photo_reports/models.py:138
+msgid "Photo Likes"
+msgstr "Лайки фотографий"
+
+#: photographer_dashboard/forms.py:44
+msgid "Primary Photographer"
+msgstr "Основной фотограф"
+
+#: photographer_dashboard/forms.py:47
+msgid "More Photographers"
+msgstr "Еще фотографы"
+
+#: photographer_dashboard/forms.py:48
+msgid ""
+"Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
+msgstr ""
+
+#: places/forms.py:11 places/models.py:117 templates/main_app/index.html:162
+#: templates/places/list.html:90
+msgid "Bar"
+msgstr "Бар"
+
+#: places/forms.py:12 places/models.py:125 templates/main_app/index.html:163
+#: templates/places/list.html:91
+msgid "Bowling"
+msgstr "Боулинг"
+
+#: places/forms.py:13 places/models.py:122 templates/main_app/index.html:169
+#: templates/places/list.html:97
+msgid "Veranda"
+msgstr "Веранда"
+
+#: places/forms.py:14 places/models.py:129 templates/main_app/index.html:174
+#: templates/places/list.html:102
+msgid "Health (or fitness)"
+msgstr "Здоровье (или фитнес)"
+
+#: places/forms.py:15 places/models.py:118 templates/main_app/index.html:165
+#: templates/places/list.html:93
+msgid "Hookah"
+msgstr "Кальянная"
+
+#: places/forms.py:16 places/models.py:121 templates/main_app/index.html:166
+#: templates/places/list.html:94
+msgid "Karaoke"
+msgstr "Караоке"
+
+#: places/forms.py:17 places/models.py:126 templates/main_app/index.html:167
+#: templates/places/list.html:95
+msgid "Coffee House"
+msgstr "Кофейня"
+
+#: places/forms.py:18 places/models.py:130 templates/main_app/index.html:175
+#: templates/places/list.html:103
+msgid "Store"
+msgstr "Магазин"
+
+#: places/forms.py:19 places/models.py:120 templates/main_app/index.html:168
+#: templates/places/list.html:96
+msgid "Night Club"
+msgstr "Ночной клуб"
+
+#: places/forms.py:20 places/models.py:127 templates/main_app/index.html:172
+#: templates/places/list.html:100
+msgid "Educational Project"
+msgstr "Образовательный проект"
+
+#: places/forms.py:21 places/models.py:124 templates/main_app/index.html:164
+#: templates/places/list.html:92
+msgid "Brewery"
+msgstr "Пивоварня"
+
+#: places/forms.py:22 places/models.py:128 templates/main_app/index.html:173
+#: templates/places/list.html:101
+msgid "Entertainment (various events)"
+msgstr "Развлечения (различные мероприятия)"
+
+#: places/forms.py:23 places/models.py:119 templates/main_app/index.html:170
+#: templates/places/list.html:98
+msgid "Restaurant"
+msgstr "Ресторан"
+
+#: places/forms.py:24 places/models.py:123 templates/main_app/index.html:171
+#: templates/places/list.html:99
+msgid "Strip Club"
+msgstr "Стриптиз-клуб"
+
+#: places/forms.py:34 places/models.py:144 templates/places/list.html:107
+msgid "Kitchen Author"
+msgstr "Авторская кухня"
+
+#: places/forms.py:35 places/models.py:149 templates/places/list.html:108
+msgid "Kitchen Azerbaijani"
+msgstr "Азербайджанская кухня"
+
+#: places/forms.py:36 places/models.py:142 templates/places/list.html:109
+msgid "Kitchen American"
+msgstr "Американская кухня"
+
+#: places/forms.py:37 places/models.py:148 templates/places/list.html:110
+msgid "Kitchen Armenian"
+msgstr "Армянская кухня"
+
+#: places/forms.py:38 places/models.py:146 templates/places/list.html:111
+msgid "Kitchen Belarusian"
+msgstr "Белорусская кухня"
+
+#: places/forms.py:39 places/models.py:150 templates/places/list.html:116
+msgid "Kitchen Georgian"
+msgstr "Грузинская кухня"
+
+#: places/forms.py:40 places/models.py:141 templates/places/list.html:112
+msgid "Kitchen European"
+msgstr "Европейская кухня"
+
+#: places/forms.py:41 places/models.py:154 templates/places/list.html:113
+msgid "Kitchen Indian"
+msgstr "Индийская кухня"
+
+#: places/forms.py:42 places/models.py:151 templates/places/list.html:114
+msgid "Kitchen Spanish"
+msgstr "Испанская кухня"
+
+#: places/forms.py:43 places/models.py:143 templates/places/list.html:115
+msgid "Kitchen Italian"
+msgstr "Итальянская кухня"
+
+#: places/forms.py:44 places/models.py:152 templates/places/list.html:117
+msgid "Kitchen Mexican"
+msgstr "Мексиканская кухня"
+
+#: places/forms.py:45 places/models.py:147 templates/places/list.html:118
+msgid "Kitchen Russian"
+msgstr "Русская кухня"
+
+#: places/forms.py:46 places/models.py:145 templates/places/list.html:119
+msgid "Kitchen Ukrainian"
+msgstr "Украинская кухня"
+
+#: places/forms.py:47 places/models.py:153 templates/places/list.html:120
+msgid "Kitchen Japanese"
+msgstr "Японская кухня"
+
+#: places/models.py:21 places/models.py:139 templates/places/list.html:40
+#: templates/places/list.html:63 templates/places/list.html:64
+msgid "District"
+msgstr "Район"
+
+#: places/models.py:22
+msgid "Districts"
+msgstr "Районы"
+
+#: places/models.py:69
+msgid "top left"
+msgstr "верх лево"
+
+#: places/models.py:70
+msgid "top right"
+msgstr "верх право"
+
+#: places/models.py:71
+msgid "bottom left"
+msgstr "низ лево"
+
+#: places/models.py:72
+msgid "bottom middle"
+msgstr "низ центр"
+
+#: places/models.py:73
+msgid "bottom right"
+msgstr "низ право"
+
+#: places/models.py:79
+msgid "Watermark Position"
+msgstr "Расположение водяного знака"
+
+#: places/models.py:94
+msgid "Watermark Scale"
+msgstr "Масштаб водяного знака"
+
+#: places/models.py:109 templates/places/detail.html:92
+msgid "Average Check"
+msgstr "Средний чек"
+
+#: places/models.py:158
+msgid "Is Closed"
+msgstr "Закрыто"
+
+#: places/models.py:162 templates/admin_dashboard/base.html:29
+#: templates/admin_dashboard/places.html:8 templates/main_app/base.html:91
+#: templates/places/list.html:8 templates/places/list.html:30
+msgid "Places"
+msgstr "Заведения"
+
+#: templates/admin/base.html:36
+msgid "Welcome,"
+msgstr ""
+
+#: templates/admin/base.html:41
+msgid "View site"
+msgstr ""
+
+#: templates/admin/base.html:46
+msgid "Documentation"
+msgstr ""
+
+#: templates/admin/base.html:50 templates/main_app/base.html:114
+#: templates/main_app/base.html:177
+msgid "Change password"
+msgstr "Сменить пароль"
+
+#: templates/admin/base.html:52 templates/main_app/base.html:118
+#: templates/main_app/base.html:181
+msgid "Log out"
+msgstr "Выйти"
+
+#: templates/admin/base.html:62 templates/main_app/base.html:79
+#: templates/main_app/index.html:8
+msgid "Home"
+msgstr "Главная"
+
+#: templates/admin/base_site.html:3
+msgid "Django site admin"
+msgstr ""
+
+#: templates/admin/base_site.html:6
+msgid "Django administration"
+msgstr ""
+
+#: templates/admin_dashboard/add/announcement.html:8
+#: templates/admin_dashboard/add/announcement.html:33
+#: templates/admin_dashboard/announcements.html:25
+msgid "Add Announcement"
+msgstr "Добавить объявление"
+
+#: templates/admin_dashboard/add/announcement.html:27
+#: templates/admin_dashboard/add/news.html:28
+#: templates/admin_dashboard/add/place.html:25
+#: templates/admin_dashboard/edit/announcement.html:27
+#: templates/admin_dashboard/edit/news.html:28
+#: templates/admin_dashboard/edit/place.html:25
+#: templates/photographer_dashboard/add_video_report.html:27
+#: templates/photographer_dashboard/edit_photo_report.html:44
+#: templates/photographer_dashboard/edit_video_report.html:27
+msgid "Error!"
+msgstr "Ошибка!"
+
+#: templates/admin_dashboard/add/banner.html:8
+#: templates/admin_dashboard/add/banner.html:31
+#: templates/admin_dashboard/banners.html:25
+msgid "Add Banner"
+msgstr "Добавить банер"
+
+#: templates/admin_dashboard/add/banner.html:25
+#: templates/admin_dashboard/edit/banner.html:25
+msgid "Error! A banner with this type already exists in this region!"
+msgstr "Ошибка! Банер с таким типом в данном регионе уже существует!"
+
+#: templates/admin_dashboard/add/news.html:8
+#: templates/admin_dashboard/add/news.html:34
+#: templates/admin_dashboard/news.html:26
+msgid "Add News"
+msgstr "Добавить новость"
+
+#: templates/admin_dashboard/add/place.html:8
+#: templates/admin_dashboard/add/place.html:31
+#: templates/admin_dashboard/places.html:26
+msgid "Add Place"
+msgstr "Добавить заведениe"
+
+#: templates/admin_dashboard/admins.html:7
+#: templates/admin_dashboard/base.html:14
+msgid "Admins"
+msgstr "Админы"
+
+#: templates/admin_dashboard/admins.html:25
+#: templates/admin_dashboard/photographers.html:25
+msgid "delete"
+msgstr "удалить"
+
+#: templates/admin_dashboard/admins.html:32
+#: templates/admin_dashboard/photographers.html:32
+#: templates/admin_dashboard/places.html:31
+msgid "SEARCH"
+msgstr "ПОИСК"
+
+#: templates/admin_dashboard/admins.html:39
+#: templates/admin_dashboard/photographers.html:39
+msgid "add"
+msgstr "добавить"
+
+#: templates/admin_dashboard/base.html:9 templates/main_app/base.html:102
+#: templates/main_app/base.html:165
+msgid "Admin panel"
+msgstr "Панель администратора"
+
+#: templates/admin_dashboard/base.html:17
+#: templates/admin_dashboard/photographers.html:7
+msgid "Photographers"
+msgstr "Фотографы"
+
+#: templates/admin_dashboard/base.html:20
+#: templates/admin_dashboard/payments.html:8
+msgid "Payments"
+msgstr "Сводка"
+
+#: templates/admin_dashboard/edit/announcement.html:8
+#: templates/admin_dashboard/edit/announcement.html:33
+msgid "Edit Announcement"
+msgstr "Редактировать объявление"
+
+#: templates/admin_dashboard/edit/banner.html:8
+#: templates/admin_dashboard/edit/banner.html:31
+msgid "Edit Banner"
+msgstr "Редактировать банер"
+
+#: templates/admin_dashboard/edit/news.html:8
+#: templates/admin_dashboard/edit/news.html:34 templates/news/detail.html:38
+msgid "Edit News"
+msgstr "Редактировать новость"
+
+#: templates/admin_dashboard/edit/news.html:36 templates/news/detail.html:41
+msgid "Delete News"
+msgstr "Удалить новость"
+
+#: templates/admin_dashboard/edit/place.html:8
+#: templates/admin_dashboard/edit/place.html:31 templates/places/detail.html:32
+msgid "Edit Place"
+msgstr "Редактировать заведениe"
+
+#: templates/admin_dashboard/payments.html:32
+msgid "According Photoreports"
+msgstr "По фоторепортажам"
+
+#: templates/admin_dashboard/payments.html:53
+msgid "Total Photoreports"
+msgstr "Итого по фоторепортажам"
+
+#: templates/admin_dashboard/payments.html:63
+msgid "According Videoreports"
+msgstr "По видеорепортажам"
+
+#: templates/admin_dashboard/payments.html:84
+msgid "Total Videoreports"
+msgstr "Итого по видеорепортажам"
+
+#: templates/admin_dashboard/payments.html:96
+msgid "Total"
+msgstr "Итого"
+
+#: templates/admin_dashboard/photographer-orders.html:29
+msgid "Order Date"
+msgstr "Дата заказа"
+
+#: templates/main_app/about.html:6 templates/main_app/about.html:16
+#: templates/main_app/base.html:246
+msgid "About LikeMe"
+msgstr "Подробнее о LikeMe"
+
+#: templates/main_app/about.html:18
+msgid ""
+"A portal covering restaurant and club life in Ukraine, as well as countries "
+"of Western Europe. News, interviews, announcements of events, a directory of "
+"institutions. Reviews, photos and video reports."
+msgstr ""
+"Портал, освещающий ресторанную и клубную жизнь в Украине, а также стран "
+"Западной Европы. Новости, интервью, анонсы событий, каталог заведений. "
+"Обзоры, фото и видео репортажи."
+
+#: templates/main_app/about.html:20
+msgid "A portal"
+msgstr "Портал"
+
+#: templates/main_app/about.html:20
+msgid ""
+"was founded in 2014 and came to rebranding at the end of 2019, receiving a "
+"new name"
+msgstr ""
+"был основан в 2014 и пришел к ребрендингу в конце 2019 года, получив новое "
+"название"
+
+#: templates/main_app/about.html:20
+msgid ""
+"Our portal is an example of one of the most successful, modern projects in "
+"the club and restaurant industry. The monthly audience of our portal is more "
+"than 50 thousand people. The main idea of the project is the combination of "
+"restaurant and club culture in all its manifestations. LikeMe.One strives to "
+"maximize itself and provide unique content to our customers."
+msgstr ""
+"Наш портал является примером одного из самых успешных, современных проектов "
+"в сфере клубно-ресторанной индустрии. Ежемесячная аудитория нашего портала "
+"составляет более 50 тысяч человек. Основная идея проекта – объединение "
+"ресторанной и клубной культуры во всех её проявлениях. LikeMe.One стремится "
+"максимально улучшить себя и предоставить уникальный контент наши заказчиком."
+
+#: templates/main_app/about.html:21
+msgid ""
+"Today, we are closely engaged in the development of our project and strive "
+"to develop a regional network throughout Ukraine, as well as beyond its "
+"aisles."
+msgstr ""
+"На сегодняшний день мы плотно занимаемся развитием нашего проекта и "
+"стремимся к развитию региональной сети по всей территории Украины, а так же "
+"и за её приделы."
+
+#: templates/main_app/about.html:22
+msgid ""
+"Our team consists of first-class professionals who know their job and do "
+"truly incredible things. We create and promote only the best. Our services "
+"are not limited only to club and restaurant photography, we also work in the "
+"field of interior and food filming, wedding and exclusive."
+msgstr ""
+"Наша команда состоит из первоклассных профессионалов, которые знают свое "
+"дело и творят поистине невероятные вещи. Мы создаем и продвигаем только "
+"самое лучшее. Наши услуги не ограничиваются только лишь клубно-ресторанной "
+"съемкой, мы так же работаем в сфере интерьерных и food съемках, свадебных и "
+"эксклюзивных."
+
+#: templates/main_app/about.html:23
+msgid ""
+"is something completely new, but everything is new only in the future. Stay "
+"with us and you will not regret your choice!"
+msgstr ""
+"это что-то совсем новое, но все новое лишь в грядущем. Оставайся с нами и ты "
+"не пожалеешь о своем выборе!"
+
+#: templates/main_app/base.html:11
+msgid ""
+"The best photos and videos for your event only with us. We are the media "
+"center in your city!"
+msgstr ""
+"Лучшие фото и видео съемки для вашего мероприятия только у нас. Мы центр "
+"медийности в вашем городе!"
+
+#: templates/main_app/base.html:12
+msgid ""
+"Reportage, reports, photos, photographer, events, announcements, reading "
+"materials, banquets, interior photos, photographs, portrait photos, order a "
+"photographer, news, odessa, vinnytsia, kiev, kharkov, lviv"
+msgstr ""
+"Репортаж, репортажи, фотографии, фотограф, события, анонсы, чтиво, банкеты, "
+"интерьерные фото, фоточки, портретные фото, заказать фотографа, новости, "
+"одесса, винница, киев, харьков, львов"
+
+#: templates/main_app/base.html:18 templates/main_app/base.html:19
+#: templates/main_app/base.html:21
+msgid "The best photos and videos for your event only with us."
+msgstr "Лучшие фото и видео съемки для вашего мероприятия только у нас."
+
+#: templates/main_app/base.html:26
+msgid "Reports, Events, Exclusive photos of your city"
+msgstr "Репортажи, События, Эксклюзивные фотографии вашего города"
+
+#: templates/main_app/base.html:88
+#: templates/photographer_dashboard/base.html:17
+#: templates/photographer_dashboard/video_reports.html:8
+#: templates/video_reports/list.html:8 templates/video_reports/list.html:39
+#: video_reports/models.py:60
+msgid "Videoreports"
+msgstr "Видеорепортажи"
+
+#: templates/main_app/base.html:109 templates/main_app/base.html:172
+#: templates/photographer_dashboard/base.html:9
+msgid "Photographer panel"
+msgstr "Панель фотографа"
+
+#: templates/main_app/base.html:121 templates/main_app/base.html:184
+msgid "Log in"
+msgstr "Вход"
+
+#: templates/main_app/base.html:263 templates/main_app/policy.html:6
+#: templates/main_app/policy.html:17
+msgid "Terms of Use"
+msgstr "Условия использования"
+
+#: templates/main_app/base.html:268 templates/main_app/vacancy.html:7
+#: templates/main_app/vacancy.html:18
+msgid "Vacancy"
+msgstr "Вакансии"
+
+#: templates/main_app/error/400.html:9
+#, fuzzy
+#| msgid "Error!"
+msgid "Error 400"
+msgstr "Ошибка!"
+
+#: templates/main_app/error/403.html:9
+#, fuzzy
+#| msgid "Error!"
+msgid "Error 403"
+msgstr "Ошибка!"
+
+#: templates/main_app/error/404.html:9
+#, fuzzy
+#| msgid "Error!"
+msgid "Error 404"
+msgstr "Ошибка!"
+
+#: templates/main_app/error/500.html:9
+#, fuzzy
+#| msgid "Error!"
+msgid "Error 500"
+msgstr "Ошибка!"
+
+#: templates/main_app/index.html:114 templates/news/list.html:64
+msgid "Read more"
+msgstr "Читать далее"
+
+#: templates/main_app/index.html:153
+msgid "Recommended to visit"
+msgstr "Рекомендуем посетить"
+
+#: templates/main_app/index.html:153
+msgid "Places of the week"
+msgstr "Заведения на этой неделe"
+
+#: templates/main_app/index.html:204
+msgid "Reports of the week"
+msgstr "Фоторепортажи на этой неделe"
+
+#: templates/main_app/index.html:204
+msgid "View all"
+msgstr "Посмотреть все"
+
+#: templates/main_app/index.html:253
+msgid "More reporting You can"
+msgstr "Больше репортажей Вы можете"
+
+#: templates/main_app/index.html:253
+msgid "look here"
+msgstr "посмотреть здесь"
+
+#: templates/main_app/photographer-order.html:26
+msgid "To order"
+msgstr "Заказать"
+
+#: templates/main_app/photographer-order.html:37
+msgid "Your order has been sent!"
+msgstr "Ваш заказ отправлен!"
+
+#: templates/main_app/photographer-order.html:40
+msgid "Close"
+msgstr "Закрыть"
+
+#: templates/main_app/policy.html:18
+msgid "Website Terms of Service Agreement"
+msgstr "Соглашение об условиях пользования сайтом"
+
+#: templates/main_app/policy.html:20
+msgid ""
+"The following conditions explain how you can use the LikeMe website. Please "
+"read these terms carefully. By using this site, you agree to follow all "
+"provisions. If you do not agree with one or more of these provisions or "
+"consider them unacceptable, please do not visit the site and do not use it."
+msgstr ""
+"Следующие условия объясняют, как вы можете пользоваться сайтом LikeMe. "
+"Пожалуйста, внимательно прочитайте эти условия. Пользуясь данным сайтом, вы "
+"соглашаетесь следовать всем положениям. Если вы не согласны с одним или "
+"более из этих положений или считаете их неприемлемыми, пожалуйста, "
+"не заходите на сайт и не пользуйтесь им."
+
+#: templates/main_app/policy.html:22 templates/main_app/policy.html:29
+msgid "Personal Data Processing Agreement"
+msgstr "Соглашение об обработке персональных данных"
+
+#: templates/main_app/policy.html:25
+msgid ""
+"This agreement on the processing of personal data is developed in accordance "
+"with the legislation of Ukraine."
+msgstr ""
+"Данное соглашение об обработке персональных данных разработано в "
+"соответствии с законодательством Украины."
+
+#: templates/main_app/policy.html:26
+msgid ""
+"All persons who fill out the information constituting personal data on this "
+"website, as well as posting other information with the indicated actions, "
+"confirm their consent to the processing of personal data and their transfer "
+"to the operator of the processing of personal data."
+msgstr ""
+"Все лица заполнившие сведения, составляющие персональные данные на данном "
+"сайте, а также разместившие иную информацию обозначенными действиями "
+"подтверждают свое согласие на обработку персональных данных и их передачу "
+"оператору обработки персональных данных."
+
+#: templates/main_app/policy.html:27
+msgid "The personal data of a Citizen means the following information:"
+msgstr ""
+"Под персональными данными Гражданина понимается нижеуказанная информация:"
+
+#: templates/main_app/policy.html:28
+msgid ""
+"General information (email address, phone number and place of residence)"
+msgstr "Общая информация (адрес электронной почты, телефон и место жительства)"
+
+#: templates/main_app/policy.html:30
+msgid "Transfer of personal data to the operator for their processing"
+msgstr "Передачу персональных данных оператору по их обработке"
+
+#: templates/main_app/policy.html:31
+msgid ""
+"The citizen, accepting this Agreement, expresses their interest and full "
+"agreement that the processing of their personal data may include the "
+"following actions: collection, systematization, accumulation, storage, "
+"clarification (updating, changing), use, destruction."
+msgstr ""
+"Гражданин, принимая настоящее Соглашение, выражают свою заинтересованность и "
+"полное согласие, что обработка их персональных данных может включать в себя "
+"следующие действия: сбор, систематизацию, накопление, хранение, уточнение "
+"(обновление, изменение), использование, уничтожение."
+
+#: templates/main_app/policy.html:32
+msgid ""
+"A citizen guarantees: the information provided to them is complete, accurate "
+"and reliable; when providing information, the current legislation of "
+"Ukraine, the legitimate rights and interests of third parties are not "
+"violated; All information provided is filled by the Citizen in relation to "
+"himself personally."
+msgstr ""
+"Гражданин гарантирует: информация, им предоставленная, является полной, "
+"точной и достоверной; при предоставлении информации не нарушается "
+"действующее законодательство Украины, законные права и интересы третьих лиц; "
+"вся предоставленная информация заполнена Гражданина в отношении себя лично."
+
+#: templates/main_app/policy.html:35 templates/places/detail.html:82
+msgid "Website"
+msgstr "Сайт"
+
+#: templates/main_app/policy.html:35
+msgid "is a purely informational and non-profit organization."
+msgstr "является исключительно информационный и некоммерческой организацией."
+
+#: templates/main_app/search.html:8 templates/main_app/search.html:28
+msgid "Search"
+msgstr "Поиск"
+
+#: templates/main_app/search.html:33
+msgid "Enter the name of the report, institution or news."
+msgstr "Введите название репортажа, заведения либо новости."
+
+#: templates/main_app/search.html:40
+msgid "Search for reports, places, news in your area."
+msgstr "Поиск репортажа, заведения, новости в вашем регионе."
+
+#: templates/main_app/users/login.html:14
+msgid "Login"
+msgstr "Авторизация"
+
+#: templates/main_app/users/login.html:36
+msgid "You are already signed in."
+msgstr "Вы уже выполнили вход."
+
+#: templates/main_app/users/login.html:40
+#: templates/main_app/users/login.html:85
+#: templates/main_app/users/password-change-done.html:37
+#: templates/main_app/users/password-change.html:73
+#: templates/main_app/users/register.html:79
+msgid "Back to"
+msgstr "Вернуться на"
+
+#: templates/main_app/users/login.html:46
+msgid "Log in to your account"
+msgstr "Войдите в свою учетную запись"
+
+#: templates/main_app/users/login.html:52
+#: templates/main_app/users/register.html:45
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: templates/main_app/users/login.html:56
+#: templates/main_app/users/register.html:50
+msgid "Password"
+msgstr "Пароль"
+
+#: templates/main_app/users/login.html:60
+#: templates/main_app/users/register.html:77
+msgid "Log In"
+msgstr "Войти"
+
+#: templates/main_app/users/login.html:67
+msgid "OR"
+msgstr "ИЛИ"
+
+#: templates/main_app/users/login.html:83
+msgid "New user?"
+msgstr "Новый пользователь?"
+
+#: templates/main_app/users/login.html:83
+msgid "Sign Up"
+msgstr "Зарегистрироваться"
+
+#: templates/main_app/users/password-change-done.html:14
+#: templates/main_app/users/password-change.html:14
+#: templates/main_app/users/password-change.html:36
+msgid "Password change"
+msgstr "Изменение пароля"
+
+#: templates/main_app/users/password-change-done.html:33
+msgid "Password changed successfully!"
+msgstr "Пароль успешно изменен!"
+
+#: templates/main_app/users/password-change.html:42
+msgid "Old password"
+msgstr "Старый пароль"
+
+#: templates/main_app/users/password-change.html:45
+msgid "New password"
+msgstr "Новый пароль"
+
+#: templates/main_app/users/password-change.html:49
+msgid "Your password can't be too similar to your other personal information."
+msgstr ""
+"Ваш пароль не должен совпадать с вашим именем или другой персональной "
+"информацией или быть слишком похожим на неё."
+
+#: templates/main_app/users/password-change.html:50
+msgid "Your password must contain at least 8 characters."
+msgstr "Ваш пароль должен содержать как минимум 8 символов."
+
+#: templates/main_app/users/password-change.html:51
+msgid "Your password can't be a commonly used password."
+msgstr "Ваш пароль не может быть одним из широко распространённых паролей."
+
+#: templates/main_app/users/password-change.html:52
+msgid "Your password can't be entirely numeric."
+msgstr "Ваш пароль не может состоять только из цифр."
+
+#: templates/main_app/users/password-change.html:56
+msgid "New password confirmation"
+msgstr "Подтверждение нового пароля"
+
+#: templates/main_app/users/password-change.html:60
+msgid "Change"
+msgstr "Изменить"
+
+#: templates/main_app/users/password-change.html:67
+msgid "You do not have a password!"
+msgstr "Вы не имеете пароля!"
+
+#: templates/main_app/users/register.html:14
+msgid "Sign up"
+msgstr "Регистрация"
+
+#: templates/main_app/users/register.html:38
+msgid "Account creation"
+msgstr "Создание учетной записи"
+
+#: templates/main_app/users/register.html:45
+msgid ""
+"Obligatory field. No more than 150 characters. Only letters, numbers and "
+"symbols @ /. / + / - / _."
+msgstr ""
+"Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
+"+/-/_."
+
+#: templates/main_app/users/register.html:50
+msgid ""
+"Your password must not coincide with your name or other personal information "
+"or be too similar to it. Your password must contain at least 8 characters. "
+"Your password cannot be one of the widespread passwords. Your password "
+"cannot consist of only numbers."
+msgstr ""
+"Ваш пароль не должен совпадать с вашим именем или другой персональной "
+"информацией или быть слишком похожим на неё.Ваш пароль должен содержать как "
+"минимум 8 символов.Ваш пароль не может быть одним из широко распространённых "
+"паролей.Ваш пароль не может состоять только из цифр."
+
+#: templates/main_app/users/register.html:54
+msgid "Password confirmation"
+msgstr "Подтверждение пароля"
+
+#: templates/main_app/users/register.html:54
+msgid "To confirm, please enter the password again."
+msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
+#: templates/main_app/users/register.html:65
+msgid "I accept"
+msgstr "Я принимаю"
+
+#: templates/main_app/users/register.html:65
+msgid "the terms"
+msgstr "условия"
+
+#: templates/main_app/users/register.html:69
+msgid "Create Account"
+msgstr "Создать аккаунт"
+
+#: templates/main_app/users/register.html:77
+msgid "Already have an account?"
+msgstr "Уже есть учётная запись?"
+
+#: templates/main_app/vacancy.html:20 templates/photo_reports/detail.html:54
+#: templates/video_reports/detail.html:50
+msgid "Photographer"
+msgstr "Фотограф"
+
+#: templates/main_app/vacancy.html:22 templates/main_app/vacancy.html:39
+msgid "Requirements"
+msgstr "Требования"
+
+#: templates/main_app/vacancy.html:23
+msgid "Club and restaurant shooting experience from the 1st year"
+msgstr "Опыт клубной и ресторанной съемки от 1-го года"
+
+#: templates/main_app/vacancy.html:24
+msgid ""
+"Have your own professional equipment of a photographer of class FF, Light, "
+"Softbox or Octopus"
+msgstr ""
+"Иметь собственное профессиональное оборудование фотографа класса FF, Свет, "
+"Софтбокс или Октопус"
+
+#: templates/main_app/vacancy.html:26
+msgid "For feedback send a resume to the mail"
+msgstr "Для откликов присылайте резюме на почту"
+
+#: templates/main_app/vacancy.html:32
+msgid "Journalist editor"
+msgstr "Журналист-редактор"
+
+#: templates/main_app/vacancy.html:34
+msgid "What to do"
+msgstr "Что делать"
+
+#: templates/main_app/vacancy.html:35
+msgid ""
+"Writing feature articles based on author information on 3 articles per week"
+msgstr ""
+"Написание тематических статей на основе информации автора по 3 статьи в "
+"неделю"
+
+#: templates/main_app/vacancy.html:36
+msgid "Preparation of articles and texts for the site and social networks"
+msgstr "Подготовка статей и текстов для сайта и социальных сетей"
+
+#: templates/main_app/vacancy.html:37
+msgid "Creating a positive reputation and info space around the company"
+msgstr "Создание положительной репутации и инфо-пространства вокруг компании"
+
+#: templates/main_app/vacancy.html:40
+msgid "Work experience as a journalist, editor, copywriter for at least 1 year"
+msgstr "Опыт работы журналистом, редактором, копирайтером не менее 1-го года"
+
+#: templates/main_app/vacancy.html:41
+msgid "Experience in text editors, as well as the ability to work with HTML"
+msgstr "Опыт работы в текстовых редакторах, а также умение работать с HTML"
+
+#: templates/main_app/vacancy.html:42
+msgid "Developed writing, writing and editing skills"
+msgstr "Развитая письменная речь, навыки составления и редактирования текстов"
+
+#: templates/main_app/vacancy.html:43
+msgid "Reliability and teamwork"
+msgstr "Надежность и умение работать в команде"
+
+#: templates/main_app/vacancy.html:45
+msgid "Your advantage will be"
+msgstr "Вашим преимуществом будет являться"
+
+#: templates/main_app/vacancy.html:46
+msgid "If you have experience writing restaurant-related articles"
+msgstr "Если у Вас есть опыт написания статей ресторанной тематики"
+
+#: templates/main_app/vacancy.html:48
+msgid "Conditions"
+msgstr "Условия"
+
+#: templates/main_app/vacancy.html:49
+msgid "Telework"
+msgstr "Удаленная работа"
+
+#: templates/main_app/vacancy.html:50
+msgid "The work schedule is free, meeting deadlines"
+msgstr "График работы свободный, выполнение поставленных задач в срок"
+
+#: templates/main_app/vacancy.html:51
+msgid "Probationary period 2 weeks (paid)"
+msgstr "Испытательный срок 2 недели (оплачиваемый)"
+
+#: templates/news/detail.html:66
+msgid "Share with friends:"
+msgstr "Поделиться с друзьями:"
+
+#: templates/news/detail.html:79
+msgid "Tags:"
+msgstr "Тэги:"
+
+#: templates/news/detail.html:94
+msgid "Related Articles"
+msgstr "Статьи по теме"
+
+#: templates/news/list.html:28
+msgid "News of club and restaurant life of our city"
+msgstr "Новости клубной и ресторанной жизни нашего города"
+
+#: templates/photo_reports/detail.html:49
+#: templates/photographer_dashboard/edit_photo_report.html:8
+msgid "Edit Photoreport"
+msgstr "Редактировать фоторепортаж"
+
+#: templates/photo_reports/detail.html:52
+#: templates/photographer_dashboard/edit_photo_report.html:126
+msgid "Delete Photoreport"
+msgstr "Удалить фоторепортаж"
+
+#: templates/photo_reports/detail.html:98
+msgid "Download"
+msgstr "Скачать"
+
+#: templates/photographer_dashboard/add_video_report.html:8
+#: templates/photographer_dashboard/add_video_report.html:33
+#: templates/photographer_dashboard/video_reports.html:26
+msgid "Add Videoreport"
+msgstr "Добавить видеорепортаж"
+
+#: templates/photographer_dashboard/edit_photo_report.html:67
+msgid "Update Photo"
+msgstr "Обновить фото"
+
+#: templates/photographer_dashboard/edit_photo_report.html:85
+msgid "Available"
+msgstr "Доступно"
+
+#: templates/photographer_dashboard/edit_photo_report.html:88
+msgid "Cover"
+msgstr "Обложка"
+
+#: templates/photographer_dashboard/edit_photo_report.html:113
+msgid "Transfer photos here for upload"
+msgstr "Перенесите фотографии сюда для загрузки"
+
+#: templates/photographer_dashboard/edit_photo_report.html:114
+msgid "or"
+msgstr "или"
+
+#: templates/photographer_dashboard/edit_photo_report.html:117
+msgid "Select Photos"
+msgstr "Выберите фотографии"
+
+#: templates/photographer_dashboard/edit_photo_report.html:123
+msgid "Shuffle Photos"
+msgstr "Перемешать фотографии"
+
+#: templates/photographer_dashboard/edit_photo_report.html:124
+msgid "Save Photoreport"
+msgstr "Сохранить фоторепортаж"
+
+#: templates/photographer_dashboard/edit_photo_report.html:134
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: templates/photographer_dashboard/edit_video_report.html:8
+#: templates/photographer_dashboard/edit_video_report.html:33
+msgid "Edit Videoreport"
+msgstr "Редактировать видеорепортаж"
+
+#: templates/photographer_dashboard/edit_video_report.html:35
+msgid "Delete Videoreport"
+msgstr "Удалить видеорепортаж"
+
+#: templates/photographer_dashboard/photo_reports.html:25
+#: templates/places/detail.html:38
+msgid "Add Photoreport"
+msgstr "Добавить фоторепортаж"
+
+#: templates/places/detail.html:144
+msgid "All photo reports in this institution"
+msgstr "Все фоторепортажи в этом заведении"
+
+#: templates/places/list.html:33 templates/places/list.html:56
+#: templates/places/list.html:57
+msgid "Place Category"
+msgstr "Категория заведения"
+
+#: templates/places/list.html:47 templates/places/list.html:70
+#: templates/places/list.html:71
+msgid "Kitchen"
+msgstr "Кухня"
+
+#: templates/video_reports/detail.html:45
+msgid "Edit Video Reports"
+msgstr "Редактировать отчет"
+
+#: templates/video_reports/detail.html:48
+msgid "Delete Video Reports"
+msgstr "Удалить отчет"
+
+#: video_reports/models.py:59 video_reports/models.py:87
+msgid "Videoreport"
+msgstr "Видеорепортаж"
+
+#: video_reports/models.py:91
+msgid "Video Like"
+msgstr "Лайк видео"
+
+#: video_reports/models.py:92
+msgid "Video Likes"
+msgstr "Лайки видео"

@@ -1,0 +1,26 @@
+{% extends "main_app/base.html" %}
+
+{% load i18n %}
+
+
+{% block content %}
+
+<div class="mt-3 mb-5" style="max-width: 767px; margin: auto;">
+    <h3 class="text-center text-uppercase text-secondary">{% trans 'Photographer panel' %}</h3>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+        <li class="nav-item ">
+            <a class="nav-link{% block photo_reports_active %}{% endblock photo_reports_active %}" href="{% url 'photographer_dashboard:photo-reports' %}">{% trans 'Photoreports' %}</a>
+        </li>
+        <li class="nav-item ">
+            <a class="nav-link{% block video_reports_active %}{% endblock video_reports_active %}" href="{% url 'photographer_dashboard:video-reports' %}">{% trans 'Videoreports' %}</a>
+        </li>
+    </ul>
+    <!-- End Nav tabs -->
+
+    {% block photographer_dashboard_content %}{% endblock photographer_dashboard_content %}
+
+</div>
+
+{% endblock content %}
