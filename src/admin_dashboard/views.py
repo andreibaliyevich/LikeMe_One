@@ -572,7 +572,7 @@ def add_place(request):
                 place.slug = slugify(unidecode(place_form_cd['name']))
 
                 if place_form_cd['working_hours'] == "o'clock":
-                    working_hours = f"{ place_form_cd['from_hour'] } - { place_form_cd['to_hour'] }"
+                    working_hours = f"{ place_form_cd['from_hour'] }:00 - { place_form_cd['to_hour'] }:00"
                     place.working_hours = working_hours
                 elif place_form_cd['working_hours'] == '24/7':
                     place.working_hours = place_form_cd['working_hours']
@@ -621,7 +621,7 @@ def edit_place(request, place_id):
                 place.slug = slugify(unidecode(place_form_cd['name']))
 
                 if place_form_cd['working_hours'] == "o'clock":
-                    working_hours = f"{ place_form_cd['from_hour'] } - { place_form_cd['to_hour'] }"
+                    working_hours = f"{ place_form_cd['from_hour'] }:00 - { place_form_cd['to_hour'] }:00"
                     place.working_hours = working_hours
                 elif place_form_cd['working_hours'] == '24/7':
                     place.working_hours = place_form_cd['working_hours']
@@ -653,8 +653,8 @@ def edit_place(request, place_id):
                     instance=place,
                     initial={
                         'working_hours': "o'clock",
-                        'from_hour': working_hours_split[0],
-                        'to_hour': working_hours_split[2],
+                        'from_hour': working_hours_split[0].split(':')[0],
+                        'to_hour': working_hours_split[2].split(':')[0],
                     })
             else:
                 place_form = PlaceForm(request, instance=place)
