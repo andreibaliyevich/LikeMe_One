@@ -9,9 +9,9 @@ Image.LOAD_TRUNCATED_IMAGES = True
 
 
 def get_watermark_resize(
-        img_bg_width, 
-        img_bg_height, 
-        wtrmrk_width, 
+        img_bg_width,
+        img_bg_height,
+        wtrmrk_width,
         wtrmrk_height,
         wtrmrk_scale):
     """ get watermark resize """
@@ -28,7 +28,7 @@ def get_watermark_resize(
 
 
 def paste_watermarks(photos, place):
-    """ paste watermarks """    
+    """ paste watermarks """
     WTRMRK_1 = Image.open(f'{ BASE_DIR }/static/images/watermark-logo.png').convert('RGBA')
 
     if place.image_watermark:
