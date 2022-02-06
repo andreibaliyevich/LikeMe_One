@@ -3,6 +3,6 @@ from django.utils import timezone
 
 
 def get_banner_path(instance, filename):
-    timestamp = timezone.now().timestamp()
-    file_ext = splitext(filename)[1]
-    return f'banners/{ timestamp }{ file_ext }'
+    path_name = timezone.now().timestamp()
+    file_ext = splitext(filename)[1].lower()
+    return f'banners/{ path_name }{ file_ext }'
