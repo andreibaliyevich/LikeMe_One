@@ -259,7 +259,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'contextmenu': 'formats | link image',
     'menubar': True,
     'statusbar': True,
-    'custom_undo_redo_levels': 20,
     'automatic_upload': True,
     'paste_data_images': False,
     'images_upload_credentials': False,
