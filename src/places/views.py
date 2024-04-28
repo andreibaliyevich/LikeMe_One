@@ -10,7 +10,7 @@ from .models import District, Place
 def places_list(request):
     """ places list """
     region = get_object_or_404(Region, slug=request.session['user_region'])
-    places = Place.objects.filter(region=region, is_closed=False)
+    places = Place.objects.exclude(id=1).filter(region=region, is_closed=False)
     places_filter = PlacesCreateFilter(request, request.GET or None)
     
     if request.method == 'GET' and places_filter.is_valid():
